@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+	<link type="image/x-icon" href="https://partner.steamgames.com/public/favicon.ico" rel="shortcut icon">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>IPlayerService 接口 （Steamworks 文献库）</title>
+		<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/motiva_sans.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/shared_responsive.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/shared_global.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/buttons.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/styles_global.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/header.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/styles_admin.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/styles_marketing.css" rel="stylesheet" type="text/css">
+<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/styles_landing.css" rel="stylesheet" type="text/css">
+<!--[if lte IE 7]> <style type="text/css"> .iepopupfix{ display: block; } </style> <![endif]-->
+	<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/styles_print.css" rel="stylesheet" type="text/css" media="print">
+	<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/motiva_sans.css" rel="stylesheet" type="text/css">
+	<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/doc.css" rel="stylesheet" type="text/css">
+	<link href="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/railscasts.css" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript">Object.seal && [ Object, Array, String, Number ].map( function( builtin ) { Object.seal( builtin.prototype ); } );</script><script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/marketing.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/storeadmin.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/admin.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/webtoolkit.aim.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/newsadmin.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/jquery-1.8.3.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/tooltip.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/shared_global.js"></script>
+
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/shared_responsive_adapter.js"></script>
+
+<script type="text/javascript">$J = jQuery.noConflict();$ = $J;
+			document.addEventListener('DOMContentLoaded', function(event) {
+				SetupTooltips( { tooltipCSSClass: 'jsTooltip'} );
+			});</script>	<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/highlight.pack.js"></script>
+	<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/doc.js"></script>
+		<script type="application/javascript">
+		$J( document ).ready( function() {
+			appendRenderedSectionsToNavTree();
+			bindCollapseToggles();
+			updateSelectedSection();
+			HideDocMenuOnMobile();
+
+			window.addEventListener("hashchange", updateSelectedSection );
+		} );
+	</script>
+		<noscript>
+		<style type="text/css">
+			body {
+				overflow: auto;
+			}
+			#docTocHideControl {
+				background: none;
+			}
+			#docTocHideContainer:hover {
+				background-color: #354257;
+				cursor: initial;
+			}
+		</style>
+	</noscript></head>
+<body>
+<script type="text/javascript">
+	$J( InitMiniprofileHovers( 'https%3A%2F%2Fpartner.steamgames.com' ) );
+    	g_sessionID = "fff398f0961c8e6c38b2896a";
+</script><div class="miniprofile_hover" style="display: none;"><div class="shadow_ul"></div><div class="shadow_top"></div><div class="shadow_ur"></div><div class="shadow_left"></div><div class="shadow_right"></div><div class="shadow_bl"></div><div class="shadow_bottom"></div><div class="shadow_br"></div><div class="miniprofile_hover_inner shadow_content"></div></div>
+<!-- anyone using landing_header needs to ensure jquery is loaded prior -->
+<script type="text/javascript" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/jquery.cookie.js"></script>
+<script type="text/javascript">
+	g_sessionID = "fff398f0961c8e6c38b2896a";
+	g_rgAllAffiliatedPublishers = [];
+	g_nPrimaryPublisher = 0;
+
+	function GoToEditPage( page, id )
+	{
+		if ( checkNumeric( id ) )
+		{
+			window.location.href = "https://partner.steamgames.com/apps/" + page + "/" + id;
+		}
+	}
+
+	function checkNumeric( value )
+	{
+		var anum=/(^\d+$)|(^\d+\.\d+$)/
+		if (anum.test(value))
+			return true;
+		return false;
+	}
+
+	function ToggleMobileMenu()
+	{
+		$J( '.mobile_mainmenu_content' ).toggle();
+	}
+
+	function GoToMobileNavTopLevel()
+	{
+		$J( '.mobile_mainmenu_content' ).html( $J( '#mobile_nav_toplevel' ).html() );
+	}
+
+	function OnMobileMenuClick( elNewContent )
+	{
+		$J( '.mobile_mainmenu_content' ).html( elNewContent.html() );
+	}
+
+</script>
+<div class="landing_header_ctn">
+	<div class="main_nav_ctn">
+		<div class="main_nav_mobile_ctn">
+			<div class="mobile_hamburger" onclick="ToggleMobileMenu();">
+			</div>
+			<a href="https://partner.steamgames.com/">
+				<img class="steamworks_logo" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/logo_steamworks.svg" alt="Steamworks">
+			</a>
+		</div>
+		<div class="mobile_mainmenu_content">
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_documentation' ) )">文献库<i class="arrow-right"></i></div>
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_resources' ) )">资源<i class="arrow-right"></i></div>
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_news' ) )">新闻与更新<i class="arrow-right"></i></div>
+	<a class="mobile_toplevel_option" href="https://help.steampowered.com/zh-cn/wizard/HelpWithPublishing?issueid=923" target="_blank">客服</a>
+
+			<a class="header_login_btn" href="https://partner.steamgames.com/dashboard">查看主面板</a>
+		<a class="header_logout_btn" href="javascript:Logout()">注销</a>
+	</div>
+		<div class="main_nav_content">
+			<a href="https://partner.steamgames.com/">
+				<img class="steamworks_logo" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/logo_steamworks.svg" alt="Steamworks">
+			</a>
+			<span class="main_menu_dropdown" data-tooltip-type="selector" data-tooltip-content=".submenu_doc">文献库 <i class="icoArrow"></i></span>
+			<div class="submenu_doc" style="display: none;" data-submenuid="docs">
+				<a class="submenuitem" href="https://partner.steamgames.com/doc">主页</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/gettingstarted">入门指南</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/store">商店状态</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/features">功能</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/finance">财务</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/marketing">销售与市场营销</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/sdk">Steamworks SDK</a>
+				<a class="submenuitem" href="https://partner.steamgames.com/doc/features/steamvr/info">Steam VR</a>
+							</div>
+			<span class="main_menu_dropdown" data-tooltip-type="selector" data-tooltip-content=".submenu_support">资源 <i class="icoArrow"></i></span>
+			<div class="submenu_support" style="display: none;" data-submenuid="support">
+				<a href="https://partner.steamgames.com/vrlicensing">Steam VR</a>
+				<a href="https://partner.steamgames.com/pccafe">Steam 网吧计划</a>
+				<hr>
+				<a href="https://steamcommunity.com/groups/steamworks/discussions" target="_blank">Steamworks 讨论区 <i class="icoExternal"></i></a>
+									<a href="https://www.youtube.com/user/SteamworksDev" target="_blank">Steamworks 视频教程 <i class="icoExternal"></i></a>
+							</div>
+			<span class="main_menu_dropdown" href="https://partner.steamgames.com/doc/home" data-tooltip-type="selector" data-tooltip-content=".submenu_news">新闻与更新  <i class="icoArrow"></i></span>
+			<div class="submenu_news" style="display: none;" data-submenuid="news">
+				<a class="submenuitem" href="https://store.steampowered.com/news/group/4145017">Steamworks 博客 <i class="icoExternal"></i> </a>
+				<a class="submenuitem" href="https://store.steampowered.com/news/app/593110">Steam 博客 <i class="icoExternal"></i> </a>
+				<a class="submenuitem" href="https://store.steampowered.com/news/app/250820">Steam VR 博客 <i class="icoExternal"></i> </a>
+				<a class="submenuitem" href="https://store.steampowered.com/news/app/1675180">Steam Deck 博客 <i class="icoExternal"></i> </a>
+							</div>
+			<a class="main_menu_dropdown" href="https://help.steampowered.com/zh-cn/wizard/HelpWithPublishing?issueid=923">客服</a>
+
+			<div class="main_nav_right">
+									<div class="nav_right_info_ctn">
+						<div class="partner_info_ctn">
+							<div class="header_partner_name">
+																											无所属单位																								</div>
+						</div>
+						<a class="pulldown global_action_link" id="account_pulldown" onclick="ShowMenu( this, 'account_dropdown', 'right', 'bottom', true );">li_ze_jian310</a>
+						<div class="popup_block_new" id="account_dropdown" style="display: none;">
+							<div class="popup_body popup_menu">
+																	<a class="popup_menu_item" href="javascript:Logout()">注销</a>
+																<span class="popup_menu_item" id="account_language_pulldown">更改语言</span>
+								<div class="popup_block_new" id="language_dropdown" style="display: none;">
+									<div class="popup_body popup_menu">
+																																													<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=schinese" onclick="ChangeLanguage( 'schinese' ); return false;">简体中文</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=tchinese" onclick="ChangeLanguage( 'tchinese' ); return false;">繁體中文（繁体中文）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=japanese" onclick="ChangeLanguage( 'japanese' ); return false;">日本語（日语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=koreana" onclick="ChangeLanguage( 'koreana' ); return false;">한국어（韩语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=thai" onclick="ChangeLanguage( 'thai' ); return false;">ไทย（泰语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=bulgarian" onclick="ChangeLanguage( 'bulgarian' ); return false;">български（保加利亚语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=czech" onclick="ChangeLanguage( 'czech' ); return false;">Čeština（捷克语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=danish" onclick="ChangeLanguage( 'danish' ); return false;">Dansk（丹麦语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=german" onclick="ChangeLanguage( 'german' ); return false;">Deutsch（德语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=english" onclick="ChangeLanguage( 'english' ); return false;">English（英语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=spanish" onclick="ChangeLanguage( 'spanish' ); return false;">Español-España（西班牙语 - 西班牙）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=latam" onclick="ChangeLanguage( 'latam' ); return false;">Español - Latinoamérica（西班牙语 - 拉丁美洲）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=greek" onclick="ChangeLanguage( 'greek' ); return false;">Ελληνικά（希腊语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=french" onclick="ChangeLanguage( 'french' ); return false;">Français（法语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=italian" onclick="ChangeLanguage( 'italian' ); return false;">Italiano（意大利语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=indonesian" onclick="ChangeLanguage( 'indonesian' ); return false;">Bahasa Indonesia（印度尼西亚语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=hungarian" onclick="ChangeLanguage( 'hungarian' ); return false;">Magyar（匈牙利语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=dutch" onclick="ChangeLanguage( 'dutch' ); return false;">Nederlands（荷兰语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=norwegian" onclick="ChangeLanguage( 'norwegian' ); return false;">Norsk（挪威语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=polish" onclick="ChangeLanguage( 'polish' ); return false;">Polski（波兰语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=portuguese" onclick="ChangeLanguage( 'portuguese' ); return false;">Português（葡萄牙语 - 葡萄牙）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=brazilian" onclick="ChangeLanguage( 'brazilian' ); return false;">Português-Brasil（葡萄牙语 - 巴西）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=romanian" onclick="ChangeLanguage( 'romanian' ); return false;">Română（罗马尼亚语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=russian" onclick="ChangeLanguage( 'russian' ); return false;">Русский（俄语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=finnish" onclick="ChangeLanguage( 'finnish' ); return false;">Suomi（芬兰语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=swedish" onclick="ChangeLanguage( 'swedish' ); return false;">Svenska（瑞典语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=turkish" onclick="ChangeLanguage( 'turkish' ); return false;">Türkçe（土耳其语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=vietnamese" onclick="ChangeLanguage( 'vietnamese' ); return false;">Tiếng Việt（越南语）</a>
+																																			<a class="popup_menu_item tight" href="https://partner.steamgames.com/doc/webapi/IPlayerService?l=ukrainian" onclick="ChangeLanguage( 'ukrainian' ); return false;">Українська（乌克兰语）</a>
+																															<a class="popup_menu_item tight" href="https://www.valvesoftware.com/en/contact?contact-person=Translation%20Team%20Feedback" target="_blank">报告翻译问题</a>
+									</div>
+								</div>
+																							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						RegisterFlyout( 'account_language_pulldown', 'language_dropdown', 'leftsubmenu', 'bottomsubmenu', true );
+					</script>
+					<a href="https://steamcommunity.com/profiles/76561199045657363/" class="user_avatar playerAvatar offline">
+						<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/a41301d4b9e1d39dda8f88f1c057b74f846482c7.jpg">
+					</a>
+							</div>
+		</div>
+	</div>
+
+			<div class="partner_nav_ctn">
+			<div class="partner_nav_content">
+
+				<a href="https://partner.steamgames.com/dashboard" class="">主面板</a>
+
+				
+				
+				
+				
+				
+				
+				
+								<div class="partner_nav_right">
+					<input type="text" id="appHeaderFindInput" class="search_by_app" placeholder="依照应用名称或 ID 查找" autocomplete="off">
+				</div>
+			</div>
+		</div>
+			</div>
+
+
+
+<div id="mobile_nav_toplevel" style="display: none">
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_documentation' ) )">文献库<i class="arrow-right"></i></div>
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_resources' ) )">资源<i class="arrow-right"></i></div>
+	<div class="mobile_toplevel_option" onclick="OnMobileMenuClick( $J( '#mobile_nav_news' ) )">新闻与更新<i class="arrow-right"></i></div>
+	<a class="mobile_toplevel_option" href="https://help.steampowered.com/zh-cn/wizard/HelpWithPublishing?issueid=923" target="_blank">客服</a>
+
+			<a class="header_login_btn" href="https://partner.steamgames.com/dashboard">查看主面板</a>
+		<a class="header_logout_btn" href="javascript:Logout()">注销</a>
+	</div>
+
+<div class="mobile_nav_sublevel" id="mobile_nav_documentation" style="display: none">
+	<div class="mobile_nav_back" onclick="GoToMobileNavTopLevel()">返回</div>
+	<div class="mobile_nav_title">文献库</div>
+
+	<div class="mobile_nav_icons_ctn">
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/gettingstarted">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_gettingstarted.svg">
+			<div class="mobile_nav_icon_title">入门指南</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/store">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_storepresence.svg">
+			<div class="mobile_nav_icon_title">商店状态</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/features">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_features.svg">
+			<div class="mobile_nav_icon_title">功能</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/finance">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_finance.svg">
+			<div class="mobile_nav_icon_title">财务</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/marketing">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_salesmarketing.svg">
+			<div class="mobile_nav_icon_title">销售与市场营销</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/sdk">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_SDK.svg">
+			<div class="mobile_nav_icon_title">Steamworks SDK</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://support.steampowered.com/kb_article.php?ref=3303-QWRC-3436">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_cafe.svg">
+			<div class="mobile_nav_icon_title">网吧许可</div>
+		</a>
+		<a class="mobile_nav_icon_option" href="https://partner.steamgames.com/doc/features/steamvr/info">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/nav_vr.svg">
+			<div class="mobile_nav_icon_title">Steam VR</div>
+		</a>
+	</div>
+	<a class="mobile_nav_seeall mobile_nav_icon_option" href="https://partner.steamgames.com/doc/">
+		查看全部	</a>
+</div>
+
+<div class="mobile_nav_sublevel" id="mobile_nav_news" style="display: none">
+	<div class="mobile_nav_back" onclick="GoToMobileNavTopLevel()">返回</div>
+	<div class="mobile_nav_title">新闻与更新</div>
+
+	<a class="mobile_nav_suboption" href="https://store.steampowered.com/news/group/4145017">Steamworks 博客</a>
+	<a class="mobile_nav_suboption" href="https://store.steampowered.com/news/app/593110">Steam 博客</a>
+	<a class="mobile_nav_suboption" href="https://store.steampowered.com/news/app/250820">Steam VR 博客</a>
+	<a class="mobile_nav_suboption" href="https://store.steampowered.com/news/app/1675180">Steam Deck 博客</a>
+</div>
+
+<div class="mobile_nav_sublevel" id="mobile_nav_resources" style="display: none">
+	<div class="mobile_nav_back" onclick="GoToMobileNavTopLevel()">返回</div>
+	<div class="mobile_nav_title">资源</div>
+
+	<a class="mobile_nav_suboption" href="https://partner.steamgames.com/vrlicensing">Steam VR</a>
+	<a class="mobile_nav_suboption" href="https://support.steampowered.com/kb_article.php?ref=3303-QWRC-3436">Steam 网吧计划</a>
+	<a class="mobile_nav_suboption" href="https://steamcommunity.com/groups/steamworks/discussions" target="_blank">Steamworks 讨论区</a>
+</div>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+		$J('.main_menu_dropdown').v_tooltip({'location':'bottom', 'tooltipClass': 'main_menu_tooltip', 'offsetY': 0, 'offsetX': 0,
+			'tooltipParent': '.main_nav_content', 'parentActiveCSSClass': 'main_menu_tooltip_hover', 'fadeSpeed': 0, 'inheritParentMinWidth': true});
+
+		$J('.partner_menu_dropdown').v_tooltip({'location':'bottom', 'tooltipClass': 'partner_menu_tooltip', 'offsetY': 0, 'offsetX': 0,
+			'tooltipParent': '.partner_nav_ctn', 'parentActiveCSSClass': 'partner_menu_tooltip_hover', 'fadeSpeed': 0, 'inheritParentMinWidth': true});
+
+		$J('.partner_select_options').v_tooltip({'location':'bottom', 'tooltipClass': 'partner_menu_tooltip', 'offsetY': 0, 'offsetX': 0,
+			'tooltipParent': '.partner_select', 'parentActiveCSSClass': 'partner_menu_tooltip_hover', 'fadeSpeed': 0, 'inheritParentMinWidth': true});
+
+		input = new CAppTypeInputSuggest(
+			$J( '#appHeaderFindInput' ),
+			function( term, callback ) {
+				$J.get( 'https://partner.steamgames.com/appsearch/suggestapps?json=1&apptype=1', { 'term': term }, function( data ) {
+					callback( data.matches.map( function( x ) { return Array( x.match, x.app_type ); } ) );
+				} );
+			}, function( suggestion ) {
+				match = suggestion.match( /\[(\d+)\]$/ );
+				if ( match )
+					GoToEditPage( 'landing', match[1] );
+				else
+					console.log( 'Failed to extract AppID', suggestion );
+			});
+
+		GoToMobileNavTopLevel();
+		input.SetAlignment( 'right' );
+		input.SetSuggestionsContainerId( 'appHeaderFindSuggestions' );
+	});
+</script>
+<div id="pageContainer" class="docNavFrame">
+	<!-- header -->
+	<!-- main content area -->
+	<div class="AdminPageContent" style="padding: 0 0 20px;">
+		<div class="doc_header_container" id="landingWelcome">
+			Steamworks 文献库			<div class="doc_search_ctn">
+								<form class="docSearchArea" action="https://partner.steamgames.com/doc">
+					<input name="q" type="text" placeholder="搜索 Steamworks 文献库…" title="搜索 Steamworks 文献库…">
+					<input type="image" src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/ico_search.gif">
+				</form>
+			</div>
+					</div>
+		<div id="docContentArea">
+			<div id="docToc" class="docScrollColumn ">
+				<div id="docTocArea">
+					<div id="docNavigation">
+			<ul style="">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/home">
+											<span class="icon icon_page"></span>						<span>
+							文献库主页													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							入门指南													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/onboarding">
+											<span class="icon icon_page"></span>						<span>
+							登记筹备													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/appfee">
+											<span class="icon icon_page"></span>						<span>
+							Steam Direct 费													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/managing_users">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							管理您的 Steamworks 帐户													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/managing_users/communication">
+											<span class="icon icon_page"></span>						<span>
+							用户权限：接收 Steamworks 通信													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/managing_apps">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							管理应用程序													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/managing_apps/sharing">
+											<span class="icon icon_page"></span>						<span>
+							应用管理共享													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/managing_apps/transfer">
+											<span class="icon icon_page"></span>						<span>
+							转让应用程序													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/contentsurvey">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							内容调查													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/contentsurvey/germany">
+											<span class="icon icon_page"></span>						<span>
+							德国的强制性年龄评级													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/mobile">
+											<span class="icon icon_page"></span>						<span>
+							将手机游戏移植到 Steam													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/gettingstarted/faq">
+											<span class="icon icon_page"></span>						<span>
+							常见问题													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							商店状态													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/tags">
+											<span class="icon icon_page"></span>						<span>
+							Steam 标签													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/retire_app">
+											<span class="icon icon_page"></span>						<span>
+							从 Steam 上移除产品													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/promo">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							促销活动工具、规则及指引													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/promo/thirdpartyevents">
+											<span class="icon icon_page"></span>						<span>
+							参加第三方特卖活动													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/promo/organizers">
+											<span class="icon icon_page"></span>						<span>
+							举办第三方特卖活动													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/freetoplay">
+											<span class="icon icon_page"></span>						<span>
+							免费开玩游戏													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/coming_soon">
+											<span class="icon icon_page"></span>						<span>
+							即将推出													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/release_dates">
+											<span class="icon icon_page"></span>						<span>
+							发行日期													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/releasing">
+											<span class="icon icon_page"></span>						<span>
+							发行流程													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/types">
+											<span class="icon icon_page"></span>						<span>
+							发行选项													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/page">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							商店页面及其建立和编辑													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/page/assets">
+											<span class="icon icon_page"></span>						<span>
+							Store Page Extra Asset Management													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/page/description">
+											<span class="icon icon_page"></span>						<span>
+							商店页面文字描述													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/page/accolades">
+											<span class="icon icon_page"></span>						<span>
+							商店页面赞誉													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/assets">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							图像资产 - 概览													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/standard">
+											<span class="icon icon_page"></span>						<span>
+							商店图像资产													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/rules">
+											<span class="icon icon_page"></span>						<span>
+							图像资产规则													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/libraryassets">
+											<span class="icon icon_page"></span>						<span>
+							库资产													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/overrides">
+											<span class="icon icon_page"></span>						<span>
+							替代艺术作品													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/eventassets">
+											<span class="icon icon_page"></span>						<span>
+							活动图像资产													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/assets/community">
+											<span class="icon icon_page"></span>						<span>
+							社区图像资产													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/testing">
+											<span class="icon icon_page"></span>						<span>
+							在 Steam 上进行测试													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/prepurchase">
+											<span class="icon icon_page"></span>						<span>
+							在 Steam 上进行预购													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/seasonpass">
+											<span class="icon icon_page"></span>						<span>
+							季票													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/pricing">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							定价													</span>
+					</a>							<ul style="display: none;">
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/pricing/subscriptions">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							周期订阅													</span>
+					</a>							<ul style="display: none;">
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/pricing/currencies">
+											<span class="icon icon_page"></span>						<span>
+							支持币种													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/pricing/new_currency">
+											<span class="icon icon_page"></span>						<span>
+							添加新币种													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/pricing/csv">
+											<span class="icon icon_page"></span>						<span>
+							程序包定价 CSV 文件导入/导出													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/review_process">
+											<span class="icon icon_page"></span>						<span>
+							审核流程													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/trailer">
+											<span class="icon icon_page"></span>						<span>
+							宣传片													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/application">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							应用程序													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/depots">
+											<span class="icon icon_page"></span>						<span>
+							Depot													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/soundtrackapp">
+											<span class="icon icon_page"></span>						<span>
+							Steam 上的游戏原声音轨													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/branches">
+											<span class="icon icon_page"></span>						<span>
+							分支（测试版）													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/application/dlc">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							可下载内容（DLC）													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/dlc/browse">
+											<span class="icon icon_page"></span>						<span>
+							DLC 可见性													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/application/platforms">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							平台													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/platforms/linux">
+											<span class="icon icon_page"></span>						<span>
+							基于 SteamOS 和 Linux 的开发													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/application/bundles">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							捆绑包													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/bundles/collaborative">
+											<span class="icon icon_page"></span>						<span>
+							创建涵盖多个开发者/发行商的捆绑包													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/builds">
+											<span class="icon icon_page"></span>						<span>
+							生成版本													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/application/packages">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							程序包													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/packages/deluxe">
+											<span class="icon icon_page"></span>						<span>
+							创建和配置豪华版程序包													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/packages/autogrants">
+											<span class="icon icon_page"></span>						<span>
+							自动授予程序包													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/application/demos">
+											<span class="icon icon_page"></span>						<span>
+							试用版													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/creator_homepage">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							开发者和发行商主页													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/creator_homepage/example">
+											<span class="icon icon_page"></span>						<span>
+							主页示例													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/earlyaccess">
+											<span class="icon icon_page"></span>						<span>
+							抢先体验													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/updates">
+											<span class="icon icon_page"></span>						<span>
+							更新您的游戏——最佳实践													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/localization">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							本地化和语言													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/localization/languages">
+											<span class="icon icon_page"></span>						<span>
+							Steam 支持的语言													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/top_sellers">
+											<span class="icon icon_page"></span>						<span>
+							热销商品榜单													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/reviews">
+											<span class="icon icon_page"></span>						<span>
+							用户评测													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							直播													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast/setting_up">
+											<span class="icon icon_page"></span>						<span>
+							设置实况直播													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast/faq">
+											<span class="icon icon_page"></span>						<span>
+							常见问题													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast/demo">
+											<span class="icon icon_page"></span>						<span>
+							在 Steam 商店实况直播游戏试用版													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast/moderation">
+											<span class="icon icon_page"></span>						<span>
+							实况直播管理与添加版主													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/broadcast/stats">
+											<span class="icon icon_page"></span>						<span>
+							直播收视人数统计数据													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/manageeditions">
+											<span class="icon icon_page"></span>						<span>
+							管理版本													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/store/franchise_pages">
+											<span class="icon icon_page"></span>						<span>
+							系列作品页面													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/store/china">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							蒸汽平台													</span>
+					</a>							<ul style="display: none;">
+					</ul>
+						</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							功能													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_audio">
+											<span class="icon icon_page"></span>						<span>
+							Steam Audio													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/drm">
+											<span class="icon icon_page"></span>						<span>
+							Steam DRM													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/html_surface">
+											<span class="icon icon_page"></span>						<span>
+							Steam HTML Surface													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/cloud">
+											<span class="icon icon_page"></span>						<span>
+							Steam 云													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/cloudgaming">
+											<span class="icon icon_page"></span>						<span>
+							Steam 云畅玩（测试版）													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/workshop">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 创意工坊													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/workshop/implementation">
+											<span class="icon icon_page"></span>						<span>
+							Steam 创意工坊实现指南													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/workshop/tags">
+											<span class="icon icon_page"></span>						<span>
+							Steam 创意工坊物品标签													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/overlay">
+											<span class="icon icon_page"></span>						<span>
+							Steam 叠加界面													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/families">
+											<span class="icon icon_page"></span>						<span>
+							Steam 家庭													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/screenshots">
+											<span class="icon icon_page"></span>						<span>
+							Steam 屏幕截图													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/keys">
+											<span class="icon icon_page"></span>						<span>
+							Steam 序列号													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 库存服务													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/accessories">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存物品配饰													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/schema">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存 Schema													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/dynamicproperties">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存物品动态属性													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/itemstore">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存物品商店													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/tools">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存物品工具													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/itemtags">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存物品标签													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/inventory/webfunctions">
+											<span class="icon icon_page"></span>						<span>
+							Steam 库存网页功能													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/leaderboards">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 排行榜													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/leaderboards/guide">
+											<span class="icon icon_page"></span>						<span>
+							逐步指导：排行榜													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/timeline">
+											<span class="icon icon_page"></span>						<span>
+							Steam 时间轴													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/playtest">
+											<span class="icon icon_page"></span>						<span>
+							Steam 游戏测试													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/community">
+											<span class="icon icon_page"></span>						<span>
+							Steam 社区													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/voice">
+											<span class="icon icon_page"></span>						<span>
+							Steam 语音													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 输入													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/steam_input_gamepad_emulation_bestpractices">
+											<span class="icon icon_page"></span>						<span>
+							Steam 输入手柄模拟最佳实践													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/device">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 输入设备													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/device/x360_controller">
+											<span class="icon icon_page"></span>						<span>
+							Microsoft Xbox 360 控制器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/device/xb1_controller">
+											<span class="icon icon_page"></span>						<span>
+							Microsoft Xbox One 控制器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/device/steam_controller">
+											<span class="icon icon_page"></span>						<span>
+							Steam 控制器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/device/ps4_controller">
+											<span class="icon icon_page"></span>						<span>
+							索尼 PlayStation 4 控制器													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/concepts">
+											<span class="icon icon_page"></span>						<span>
+							一般概念													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/legacy_mode">
+											<span class="icon icon_page"></span>						<span>
+							传统模式绑定设置													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/getting_started_for_devs">
+											<span class="icon icon_page"></span>						<span>
+							开发者入门指南													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/radial_menus">
+											<span class="icon icon_page"></span>						<span>
+							径向菜单													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/action_manifest_file">
+											<span class="icon icon_page"></span>						<span>
+							操作清单文件													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/action_set_layers">
+											<span class="icon icon_page"></span>						<span>
+							操作集层													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/mode_shifting">
+											<span class="icon icon_page"></span>						<span>
+							模式切换													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/browse_configs">
+											<span class="icon icon_page"></span>						<span>
+							浏览配置													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/iga_examples">
+											<span class="icon icon_page"></span>						<span>
+							游戏中操作文件模板													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/iga_file">
+											<span class="icon icon_page"></span>						<span>
+							游戏内操作文件													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/activators">
+											<span class="icon icon_page"></span>						<span>
+							激活器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/getting_started_for_players">
+											<span class="icon icon_page"></span>						<span>
+							玩家入门指南													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/touch_menus">
+											<span class="icon icon_page"></span>						<span>
+							触摸菜单													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/input_source">
+											<span class="icon icon_page"></span>						<span>
+							输入源													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/input_source_modes">
+											<span class="icon icon_page"></span>						<span>
+							输入源模式													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steam_controller/mouse_regions">
+											<span class="icon icon_page"></span>						<span>
+							鼠标区域													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/remoteplay">
+											<span class="icon icon_page"></span>						<span>
+							Steam 远程畅玩													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/error_reporting">
+											<span class="icon icon_page"></span>						<span>
+							Steam 错误报告													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/anticheat">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Valve 反作弊（VAC）与游戏封禁													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/anticheat/vac_integration">
+											<span class="icon icon_page"></span>						<span>
+							VAC 集成													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/enhancedrichpresence">
+											<span class="icon icon_page"></span>						<span>
+							增强版丰富状态													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							多人游戏													</span>
+					</a>							<ul style="display: none;">
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer/matchmaking">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 匹配与大厅													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer/matchmaking/skill">
+											<span class="icon icon_page"></span>						<span>
+							基于技术的游戏匹配													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer/steamdatagramrelay">
+											<span class="icon icon_page"></span>						<span>
+							Steam 数据报中继													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer/networking">
+											<span class="icon icon_page"></span>						<span>
+							Steam 网络													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/multiplayer/game_servers">
+											<span class="icon icon_page"></span>						<span>
+							游戏服务器													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/microtransactions">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							小额交易（游戏内购买）													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/microtransactions/implementation">
+											<span class="icon icon_page"></span>						<span>
+							小额交易实现指南													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/microtransactions/recurring_billing">
+											<span class="icon icon_page"></span>						<span>
+							游戏内周期性循环扣款													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/common_redist">
+											<span class="icon icon_page"></span>						<span>
+							常见可再发行文件													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/game_notifications">
+											<span class="icon icon_page"></span>						<span>
+							游戏通知													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/auth">
+											<span class="icon icon_page"></span>						<span>
+							用户验证与所有权													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/achievements">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							统计与成就													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/achievements/ach_guide">
+											<span class="icon icon_page"></span>						<span>
+							分步指南：成就													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/achievements/stats_guide">
+											<span class="icon icon_page"></span>						<span>
+							分步指南：统计数据													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							虚拟现实													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr/info">
+											<span class="icon icon_page"></span>						<span>
+							SteamVR													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr/settings">
+											<span class="icon icon_page"></span>						<span>
+							虚拟现实应用程序设置													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr/input">
+											<span class="icon icon_page"></span>						<span>
+							SteamVR 输入													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr/openvr">
+											<span class="icon icon_page"></span>						<span>
+							OpenVR													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/features/steamvr/enterprise">
+											<span class="icon icon_page"></span>						<span>
+							供企业/政府使用的 SteamVR													</span>
+					</a>									</li>
+					</ul>
+						</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/finance">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							财务													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/finance/refunds">
+											<span class="icon icon_page"></span>						<span>
+							开发者退款报告													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/finance/payments_salesreporting">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							报表与付款													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/finance/payments_salesreporting/faq">
+											<span class="icon icon_page"></span>						<span>
+							报表与付款常见问答													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/finance/taxfaq">
+											<span class="icon icon_page"></span>						<span>
+							税务常见问题													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sdk">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steamworks SDK													</span>
+					</a>							<ul style="display: none;">
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sdk/api">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steamworks API 概览													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/api/example">
+											<span class="icon icon_page"></span>						<span>
+							Steamworks API 示例应用程序（SpaceWar）													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/api/debugging">
+											<span class="icon icon_page"></span>						<span>
+							Steamworks API 调试													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sdk/uploading">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							上传至 Steam													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/uploading/local_content_server">
+											<span class="icon icon_page"></span>						<span>
+							SteamPipe 本地内容服务器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/uploading/distributing_source_engine">
+											<span class="icon icon_page"></span>						<span>
+							分发 Source 引擎游戏/模组													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/uploading/distributing_gs">
+											<span class="icon icon_page"></span>						<span>
+							分销您的专用游戏服务器													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/uploading/distributing_opensource">
+											<span class="icon icon_page"></span>						<span>
+							在 Steam 上分销开源应用程序													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/installscripts">
+											<span class="icon icon_page"></span>						<span>
+							创建和使用 InstallScripts													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/goldmaster">
+											<span class="icon icon_page"></span>						<span>
+							创建零售及“Gold Master”磁盘													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sdk/updating">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							更新游戏生成版本													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sdk/updating/rename_exe">
+											<span class="icon icon_page"></span>						<span>
+							提示 - 重命名已上线的 exe													</span>
+					</a>									</li>
+					</ul>
+						</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/webapi_overview">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Web API 概览													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi_overview/oauth">
+											<span class="icon icon_page"></span>						<span>
+							OAuth													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi_overview/auth">
+											<span class="icon icon_page"></span>						<span>
+							使用 Web API 密钥进行授权													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi_overview/responses">
+											<span class="icon icon_page"></span>						<span>
+							错误代码与响应													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							销售与市场营销													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/google_analytics">
+											<span class="icon icon_page"></span>						<span>
+							Google Analytics （分析）													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/branding">
+											<span class="icon icon_page"></span>						<span>
+							Steam 品牌与商标指引													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/tradingcards">
+											<span class="icon icon_page"></span>						<span>
+							Steam 社区物品													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/utm_analytics">
+											<span class="icon icon_page"></span>						<span>
+							UTM 分析													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/profile">
+											<span class="icon icon_page"></span>						<span>
+							个人资料功能													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/followers">
+											<span class="icon icon_page"></span>						<span>
+							关注者													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/tools">
+											<span class="icon icon_page"></span>						<span>
+							功能、工具与市场营销													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							即将开展的 Steam 活动													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/2025_summer_sale">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 夏日特卖													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 主题特卖活动													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/4X_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 4X 游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/third_person_shooters_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam TPS 游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/sports_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 体育游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/animal_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 动物游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/steam_halloween_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 尖叫游戏节 4													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/political_sim_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 政治模拟游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/racing_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 竞速游戏节													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/themed_sales/automation_2025">
+											<span class="icon icon_page"></span>						<span>
+							2025 年 Steam 自动化游戏节													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 新品节													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest/tips">
+											<span class="icon icon_page"></span>						<span>
+							Steam 新品节 - 提示													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest/2025october">
+											<span class="icon icon_page"></span>						<span>
+							Steam 新品节：2025 年 10 月版													</span>
+					</a>									</li>
+					</ul>
+						</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/traffic_reporting">
+											<span class="icon icon_page"></span>						<span>
+							商店和平台流量报告													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/widget">
+											<span class="icon icon_page"></span>						<span>
+							商店小部件													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/visibility">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							在 Steam 上曝光													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/visibility/update_rounds">
+											<span class="icon icon_page"></span>						<span>
+							更新曝光轮次													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/advertising">
+											<span class="icon icon_page"></span>						<span>
+							在 Steam 上进行广告宣传													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/bestpractices">
+											<span class="icon icon_page"></span>						<span>
+							市场营销最佳实践													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/wishlist">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							愿望单													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/wishlist/reporting">
+											<span class="icon icon_page"></span>						<span>
+							愿望单报告													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/discounts">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							折扣													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/discounts/freeweekends">
+											<span class="icon icon_page"></span>						<span>
+							免费周末													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/discounts/seasonalsales">
+											<span class="icon icon_page"></span>						<span>
+							季节性特卖													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/discounts/dailydeal">
+											<span class="icon icon_page"></span>						<span>
+							每日特惠													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							活动和公告工具													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/event_examples">
+											<span class="icon icon_page"></span>						<span>
+							活动和公告示例													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/import">
+											<span class="icon icon_page"></span>						<span>
+							导入 HTML													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/embed">
+											<span class="icon icon_page"></span>						<span>
+							嵌入式小部件													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/stats">
+											<span class="icon icon_page"></span>						<span>
+							活动与公告可见性统计数据报告													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/visibility">
+											<span class="icon icon_page"></span>						<span>
+							活动和公告可见性													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/moderation">
+											<span class="icon icon_page"></span>						<span>
+							活动和公告审核步骤													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/type_patchnotes">
+											<span class="icon icon_page"></span>						<span>
+							活动类型：小型更新/补丁说明													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/type_majorupdate">
+											<span class="icon icon_page"></span>						<span>
+							活动类型：重大更新													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/event_tools/sale_pages_minimum">
+											<span class="icon icon_page"></span>						<span>
+							特卖登陆页面编辑器 - 最低要求													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/pointsshopitems">
+											<span class="icon icon_page"></span>						<span>
+							点数商店物品													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/marketing/community_moderation">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							社区管理													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/community_moderation/adding_moderators">
+											<span class="icon icon_page"></span>						<span>
+							添加社区版主													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/marketing/curators">
+											<span class="icon icon_page"></span>						<span>
+							鉴赏家及牵线鉴赏家													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam Deck													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/svg">
+											<span class="icon icon_page"></span>						<span>
+							Steam Deck SVG													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/proton">
+											<span class="icon icon_page"></span>						<span>
+							Steam Deck 与 Proton													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/compat">
+											<span class="icon icon_page"></span>						<span>
+							Steam Deck 兼容性检查流程													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/brandguidelines">
+											<span class="icon icon_page"></span>						<span>
+							SteamDeck 品牌指南与徽标													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/faq">
+											<span class="icon icon_page"></span>						<span>
+							Steam Deck 常见问题													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/devkits">
+											<span class="icon icon_page"></span>						<span>
+							Steam Deck 开发者套件													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/virtualconference">
+											<span class="icon icon_page"></span>						<span>
+							Steam 虚拟会议：Steam Deck - 2021 年 11 月 12 日													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/recommendations">
+											<span class="icon icon_page"></span>						<span>
+							为您的游戏做好在 Steam Deck 上运行的准备													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/loadgames">
+											<span class="icon icon_page"></span>						<span>
+							如何在 Steam Deck 上加载并运行游戏													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/debugging">
+											<span class="icon icon_page"></span>						<span>
+							如何在 Steam Deck 上调试 Windows 游戏													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/steamdeck/templates">
+											<span class="icon icon_page"></span>						<span>
+							社交媒体模板													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/api">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steamworks API 索引													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamApps">
+											<span class="icon icon_page"></span>						<span>
+							ISteamApps 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamClient">
+											<span class="icon icon_page"></span>						<span>
+							ISteamClient 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamController">
+											<span class="icon icon_page"></span>						<span>
+							ISteamController 接口（已弃用）													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamFriends">
+											<span class="icon icon_page"></span>						<span>
+							ISteamFriends 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamGameCoordinator">
+											<span class="icon icon_page"></span>						<span>
+							ISteamGameCoordinator 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamGameServerStats">
+											<span class="icon icon_page"></span>						<span>
+							ISteamGameServerStats 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamGameServer">
+											<span class="icon icon_page"></span>						<span>
+							ISteamGameServer 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamHTMLSurface">
+											<span class="icon icon_page"></span>						<span>
+							ISteamHTMLSurface Interface													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamHTTP">
+											<span class="icon icon_page"></span>						<span>
+							ISteamHTTP 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/isteaminput">
+											<span class="icon icon_page"></span>						<span>
+							ISteamInput 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamInventory">
+											<span class="icon icon_page"></span>						<span>
+							ISteamInventory 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamMatchmakingServers">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMatchmakingServers Interface													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamMatchmaking">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMatchmaking 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamMusicRemote">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMusicRemote 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamMusic">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMusic 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamNetworkingMessages">
+											<span class="icon icon_page"></span>						<span>
+							ISteamNetworkingMessages 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamNetworkingSockets">
+											<span class="icon icon_page"></span>						<span>
+							ISteamNetworkingSockets 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamNetworkingUtils">
+											<span class="icon icon_page"></span>						<span>
+							ISteamNetworkingUtils 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamNetworking">
+											<span class="icon icon_page"></span>						<span>
+							ISteamNetworking 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/isteamparties">
+											<span class="icon icon_page"></span>						<span>
+							ISteamParties 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamRemotePlay">
+											<span class="icon icon_page"></span>						<span>
+							ISteamRemotePlay 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamRemoteStorage">
+											<span class="icon icon_page"></span>						<span>
+							ISteamRemoteStorage 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamScreenshots">
+											<span class="icon icon_page"></span>						<span>
+							ISteamScreenshots 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamTimeline">
+											<span class="icon icon_page"></span>						<span>
+							ISteamTimeline 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamUGC">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUGC 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamUserStats">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUserStats 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamUser">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUser 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamUtils">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUtils 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/ISteamVideo">
+											<span class="icon icon_page"></span>						<span>
+							ISteamVideo 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/SteamEncryptedAppTicket">
+											<span class="icon icon_page"></span>						<span>
+							SteamEncryptedAppTicket													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/steamnetworkingtypes">
+											<span class="icon icon_page"></span>						<span>
+							steamnetworkingtypes.h													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/steam_api">
+											<span class="icon icon_page"></span>						<span>
+							steam_api.h													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/api/steam_gameserver">
+											<span class="icon icon_page"></span>						<span>
+							steam_gameserver.h													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf currentpath">
+											<a href="https://partner.steamgames.com/doc/webapi">
+											<span class="icon icon_shift_right collapse_toggle  collapse_toggle_transition"></span>						<span>
+							Steamworks Web API 索引													</span>
+					</a>							<ul style="">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IBroadcastService">
+											<span class="icon icon_page"></span>						<span>
+							IBroadcastService Interface													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ICheatReportingService">
+											<span class="icon icon_page"></span>						<span>
+							ICheatReportingService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/icloudservice">
+											<span class="icon icon_page"></span>						<span>
+							ICloudService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IEconMarketService">
+											<span class="icon icon_page"></span>						<span>
+							IEconMarketService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IEconService">
+											<span class="icon icon_page"></span>						<span>
+							IEconService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IGameInventory">
+											<span class="icon icon_page"></span>						<span>
+							IGameInventory 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IGameNotificationsService">
+											<span class="icon icon_page"></span>						<span>
+							IGameNotificationsService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IGameServersService">
+											<span class="icon icon_page"></span>						<span>
+							IGameServersService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IInventoryService">
+											<span class="icon icon_page"></span>						<span>
+							IInventoryService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ILobbyMatchmakingService">
+											<span class="icon icon_page"></span>						<span>
+							ILobbyMatchmakingService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IPartnerFinancialsService">
+											<span class="icon icon_page"></span>						<span>
+							IPartnerFinancialsService													</span>
+					</a>									</li>
+							<li class="leaf currentpath current">
+											<a href="https://partner.steamgames.com/doc/webapi/IPlayerService">
+											<span class="icon icon_page icon_shift_right collapse_toggle collapse_toggle_transition"></span>						<span>
+							IPlayerService 接口													</span>
+					</a>									<ul><li class="navSection"><a href="#GetRecentlyPlayedGames"><span class="icon "></span> <span>GetRecentlyPlayedGames</span></a></li><li class="navSection"><a href="#GetSingleGamePlaytime"><span class="icon "></span> <span>GetSingleGamePlaytime</span></a></li><li class="navSection"><a href="#GetOwnedGames"><span class="icon "></span> <span>GetOwnedGames</span></a></li><li class="navSection"><a href="#GetSteamLevel"><span class="icon "></span> <span>GetSteamLevel</span></a></li><li class="navSection"><a href="#GetBadges"><span class="icon "></span> <span>GetBadges</span></a></li><li class="navSection"><a href="#GetCommunityBadgeProgress"><span class="icon "></span> <span>GetCommunityBadgeProgress</span></a></li></ul></li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IPublishedFileService">
+											<span class="icon icon_page"></span>						<span>
+							IPublishedFileService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/isitelicenseservice">
+											<span class="icon icon_page"></span>						<span>
+							ISiteLicenseService 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamApps">
+											<span class="icon icon_page"></span>						<span>
+							ISteamApps 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamCommunity">
+											<span class="icon icon_page"></span>						<span>
+							ISteamCommunity 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamEconomy">
+											<span class="icon icon_page"></span>						<span>
+							ISteamEconomy 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamGameServerStats">
+											<span class="icon icon_page"></span>						<span>
+							ISteamGameServerStats 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamLeaderboards">
+											<span class="icon icon_page"></span>						<span>
+							ISteamLeaderboards 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamMicroTxnSandbox">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMicroTxnSandbox 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamMicroTxn">
+											<span class="icon icon_page"></span>						<span>
+							ISteamMicroTxn 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamNews">
+											<span class="icon icon_page"></span>						<span>
+							ISteamNews 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamPublishedItemSearch">
+											<span class="icon icon_page"></span>						<span>
+							ISteamPublishedItemSearch 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamPublishedItemVoting">
+											<span class="icon icon_page"></span>						<span>
+							ISteamPublishedItemVoting 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamRemoteStorage">
+											<span class="icon icon_page"></span>						<span>
+							ISteamRemoteStorage 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamUserAuth">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUserAuth 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamUserStats">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUserStats 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamUser">
+											<span class="icon icon_page"></span>						<span>
+							ISteamUser 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/ISteamWebAPIUtil">
+											<span class="icon icon_page"></span>						<span>
+							ISteamWebAPIUtil 接口													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/webapi/IWorkshopService">
+											<span class="icon icon_page"></span>						<span>
+							IWorkshopService 接口													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							Steam 网吧计划													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/publisher">
+											<span class="icon icon_page"></span>						<span>
+							发行商													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							许可持有人													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees/signup">
+											<span class="icon icon_page"></span>						<span>
+							网吧要求与注册说明													</span>
+					</a>									</li>
+							<li class="nonleaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees/gettingstarted">
+											<span class="icon icon_shift_right collapse_toggle closed collapse_toggle_transition"></span>						<span>
+							入门指南													</span>
+					</a>							<ul style="display: none;">
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees/gettingstarted/licensemodelpc">
+											<span class="icon icon_page"></span>						<span>
+							网吧模式设置说明（包括网吧服务器和内容缓存）													</span>
+					</a>									</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees/gettingstarted/licensemodelvr">
+											<span class="icon icon_page"></span>						<span>
+							VR 游戏厅模式设置说明													</span>
+					</a>									</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/sitelicense/licensees/faq">
+											<span class="icon icon_page"></span>						<span>
+							常见问题													</span>
+					</a>									</li>
+					</ul>
+						</li>
+					</ul>
+						</li>
+							<li class="leaf">
+											<a href="https://partner.steamgames.com/doc/accessibility_features">
+											<span class="icon icon_page"></span>						<span>
+							辅助功能													</span>
+					</a>									</li>
+					</ul>
+		</div>
+									</div>
+			</div>
+			<div id="docTocHideContainer">
+				<div id="docTocHideControl" class=""></div>
+			</div>
+			<div id="docMainContentArea" class="docScrollColumn">
+					<div class="docPageTitle">IPlayerService 接口</div>
+	<div class="landingBreadcrumbs">
+		<a href="https://partner.steamgames.com/doc/">Steamworks 文献库</a> &gt; <a href="https://partner.steamgames.com/doc/webapi">Steamworks Web API 索引</a> &gt; <a href="https://partner.steamgames.com/doc/webapi/IPlayerService">IPlayerService 接口</a>	</div>
+	<div class="grayRule"></div>
+		<div class="documentation_bbcode">提供与 Steam 用户交互的其他方法。<br><br>参见 <a href="https://partner.steamgames.com/doc/webapi/ISteamUser" class="bb_apilink">ISteamUser</a>，了解主接口。<br><br><strong>注意：</strong> 注意：这是服务接口，此接口中的方法应使用 <code class="bb_code bb_code_inline nohighlight">input_json</code> 参数调用。<br><br>请参见 <a href="https://partner.steamgames.com/doc/webapi_overview" class="bb_doclink">Web API 概览</a>，对如何使用 Steamworks Web API 了解更多。<h2 class="bb_section"><a name="GetRecentlyPlayedGames"></a>GetRecentlyPlayedGames</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetRecentlyPlayedGames/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家。</td></tr>	<tr><td><strong>count</strong></td><td>uint32</td><td>✔</td><td>要返回的游戏数量（0/未设置：全部）。</td></tr></tbody></table><br>获取玩家最近运行的游戏的信息。<h2 class="bb_section"><a name="GetSingleGamePlaytime"></a>GetSingleGamePlaytime</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetSingleGamePlaytime/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家。</td></tr>	<tr><td><strong>appid</strong></td><td>uint32</td><td>✔</td><td>要获取游戏时间的 APPID</td></tr></tbody></table><br>针对单个 appID 获取某个玩家的游戏时间信息。 WebAPI 密钥必须与此 appID 关联才能获取结果。<h2 class="bb_section"><a name="GetOwnedGames"></a>GetOwnedGames</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetOwnedGames/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家。</td></tr>	<tr><td><strong>include_appinfo</strong></td><td>bool</td><td>✔</td><td>如果我们需要各游戏的更多信息（如名称、图标等），为 true。</td></tr>	<tr><td><strong>include_played_free_games</strong></td><td>bool</td><td>✔</td><td>默认不包含免费游戏。  若设置，将返回用户玩过的免费游戏。</td></tr>	<tr><td><strong>appids_filter</strong></td><td>uint32</td><td>✔</td><td>若设置，将结果集限制在传入的应用。</td></tr></tbody></table><br>如果您能看到玩家拥有游戏的详情，则返回该玩家所拥有游戏的列表。<h2 class="bb_section"><a name="GetSteamLevel"></a>GetSteamLevel</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetSteamLevel/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家。</td></tr></tbody></table><br>返回用户的 Steam 等级。<h2 class="bb_section"><a name="GetBadges"></a>GetBadges</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetBadges/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家的 Steam id。</td></tr></tbody></table><br>获得指定用户所拥有的徽章。<h2 class="bb_section"><a name="GetCommunityBadgeProgress"></a>GetCommunityBadgeProgress</h2><div class="bb_code http hljs"><span class="hljs-attribute">GET https://partner.steam-api.com/IPlayerService/GetCommunityBadgeProgress/v1/</span></div><table>	<tbody><tr><th>名称</th><th>类型</th><th>是否必需</th><th>描述</th></tr>	<tr><td><strong>key</strong></td><td>string</td><td>✔</td><td>Steamworks Web API 用户验证密钥。</td></tr>	<tr><td><strong>steamid</strong></td><td>uint64</td><td>✔</td><td>要查询的玩家。</td></tr>	<tr><td><strong>badgeid</strong></td><td>int32</td><td>✔</td><td>要查询的徽章。</td></tr></tbody></table><br>获取要获得指定徽章所需的全部任务，以及已完成的任务。<br><br></div>	<div id="hashLocationHighlight"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Footer -->
+<div class="responsive_footer_ctn">
+		<div class="responsive_footer_content">
+		<div class="footer_content_left">
+			<img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/steamworks_logo_white.png" class="logo">
+			<div class="steamworks_desc">Steamworks 是由 <a href="https://www.valvesoftware.com/">Valve</a> 打造的一套工具和服务，帮助您在 <a href="https://store.steampowered.com/">Steam</a> 上配置、管理和运营您的游戏。</div>
+			<div class="corporate">
+				<a href="http://www.valvesoftware.com/"><img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/valve_logo_white_small.png"></a><span class="vr"></span><a href="https://store.steampowered.com/"><img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/steam_logo_white_small.png"></a>
+			</div>
+		</div>
+
+		<div class="footer_content_right">
+			<ul>
+				<li><em>文献库</em></li>
+				<li><a href="https://partner.steamgames.com/doc/">主页</a></li>
+				<li><a href="https://partner.steamgames.com/doc/gettingstarted">入门指南</a></li>
+				<li><a href="https://partner.steamgames.com/doc/store">商店状态</a></li>
+				<li><a href="https://partner.steamgames.com/doc/features">功能</a></li>
+				<li><a href="https://partner.steamgames.com/doc/finance">财务</a></li>
+				<li><a href="https://partner.steamgames.com/doc/marketing">销售与市场营销</a></li>
+				<li><a href="https://partner.steamgames.com/doc/sdk">Steamworks SDK</a></li>
+				<li><a href="https://partner.steamgames.com/pccafe">网吧许可</a></li>
+				<li><a href="https://partner.steamgames.com/doc/features/steamvr/info">Steam VR</a></li>
+			</ul>
+			<ul>
+				<li><em>资源</em></li>
+				<li><a href="https://partner.steamgames.com/vrlicensing">Steam VR</a></li>
+				<li><a href="https://partner.steamgames.com/pccafe">Steam 网吧计划</a></li>
+				<li><a href="https://steamcommunity.com/groups/steamworks/discussions">Steamworks 讨论区 <i class="icoExternal"></i></a></li>
+									<li><a href="https://www.youtube.com/user/SteamworksDev">Steamworks 视频教程 <i class="icoExternal"></i></a></li>
+								<li> <a href="http://twitter.com/Steamworks" target="_blank" rel="noreferrer"><img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/ico_twitter.png" alt="X: @Steamworks"></a>
+					<span aria-hidden="true">|</span><a href="https://bsky.app/profile/partner.steamgames.com" target="_blank" rel="noreferrer"><img src="IPlayerService%20%E6%8E%A5%E5%8F%A3%20%EF%BC%88Steamworks%20%E6%96%87%E7%8C%AE%E5%BA%93%EF%BC%89_files/ico_bsky.png" alt="Bluesky: Steamworks"></a></li>
+			    <li> <a class="header_login_btn footerbtn" href="https://help.steampowered.com/zh-cn/wizard/HelpWithPublishing"><span>联系客服 </span></a></li>
+            </ul>
+			<ul>
+				<li><em>新闻与更新</em></li>
+				<li><a href="https://store.steampowered.com/news/group/4145017">Steamworks 博客 <i class="icoExternal"></i></a></li>
+				<li><a href="https://store.steampowered.com/news/app/593110">Steam 博客 <i class="icoExternal"></i></a></li>
+				<li><a href="https://store.steampowered.com/news/app/250820">Steam VR 博客 <i class="icoExternal"></i></a></li>
+				<li><a href="https://store.steampowered.com/news/app/1675180">Steam Deck 博客 <i class="icoExternal"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	</script>
+<!-- End Footer -->
+
+
+<div class="popup_block_new" style="display: none; z-index: 220;" id="appHeaderFindSuggestions"><div class="popup_body popup_menu"></div></div></body></html>
