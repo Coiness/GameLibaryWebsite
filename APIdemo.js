@@ -1,8 +1,5 @@
 //iplayserver接口
-const steamapi_key = 'BE23B209B59BAD57D47722DE4AFA57B4';
-const steamid = '76561199045657363';
-
-
+import { steamapi_key,steamid } from "./config";
 //GET https://partner.steam-api.com/IPlayerService/GetRecentlyPlayedGames/v1/
 //key,steamid,count
 
