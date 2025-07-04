@@ -1,1 +1,5 @@
-config.ts
+config.js
+
+node_moudles/
+.env
+*.log
