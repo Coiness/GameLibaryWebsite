@@ -8,6 +8,8 @@
  * 最简单的方法就创建一个形状对象，形状对象的键是属性名，值是类型名（字符串形式）
  */
 
+import { error } from "node:console";
+
 /**
  * 这是一个通用的、可复用的类型守卫函数
  * 它通过一个“形状对象”来验证一个未知对象的结构
@@ -121,63 +123,74 @@ export type Shape = {
     [key:string]:'string'|'number'|'boolean'|Shape|[Shape]|['string']|['number']|['boolean'];
 }
 
+// ...existing code...
 export function isDeepType(
     obj:any,
     shape:Shape
-){
+): boolean { // 明确返回类型为 boolean
     //检查空类型
     if(typeof obj !== "object" || obj === null){
         return false    
     }
 
+    for(const shapeKey in shape){
+        let realKey = shapeKey;
+        const isOptional = shapeKey.endsWith('?');
 
-    for(const key in shape){
-        if(!(key in obj)){
-            return false
+        if (isOptional) {
+            realKey = shapeKey.slice(0, -1); // 移除末尾的 '?' 获取真实键名
         }
 
-        const objValue = obj[key]
-        const shapeValue = shape[key]
+        // 如果键是可选的，并且在对象中不存在，则跳过此键的检查
+        if (isOptional && !(realKey in obj)) {
+            continue;
+        }
 
-        //为什么不首先判断objValue是否等于shapeValue，是因为如果是数组的话，一定不相等吗？
-        //-因为这个判断只对基本类型生效，typeof{}的结果是'object'，typeof[]的结果也是'object'
-        //为什么要对shapeValue进行判断，而不是对objValue进行判断
-        //-函数是根据shape对obj进行检验，shapeValue的类型是主导
+        // 如果键是必需的，但对象中不存在，则验证失败
+        if (!(realKey in obj)) {
+            throw new Error(`对象中不存在键${shapeKey}`)
+            return false;
+        }
+
+        const objValue = obj[realKey];
+        const shapeValue = shape[shapeKey];
+
         if(Array.isArray(shapeValue)){
-
             if(!(Array.isArray(objValue))){
+                throw new Error(`对象的键不是数组${shapeKey}`)
                 return false
             }
 
-            const arrayshape = shapeValue[0];
+            const arrayShape = shapeValue[0];
             for(const item of objValue){
-                //为什么示例部分使用'string'，是只支持string吗？我可以直接递归调用吗？
-                //-注意看，string指的是typeof arrayshape，观察它是不是一个['number'],['string']等基础数组结构
-                //以及，这时的arrayshape是怎么样的？可以给个示例吗？
-                //-根据你的shape来，可以是'string','number','boolean'，也可以是{'steamid':number}
-                if(typeof arrayshape === "string"){
-                    if(typeof item !== arrayshape){
+                if(typeof arrayShape === "string"){
+                    if(typeof item !== arrayShape){
+                        throw new Error(`对象中的键类型不匹配${shapeKey}`)
                         return false
                     }
                 }else{
-                    if(!(isDeepType(item,arrayshape))){
+                    // 递归检查数组中的对象
+                    if(!(isDeepType(item, arrayShape as Shape))){
+                        throw new Error(`递归检查未通过${shapeKey}`)
                         return false
                     }
                 }
             }
-        }else if(typeof shapeValue === 'object' && shapeValue !==null){
-            if(!(isDeepType(objValue,shapeValue))){
+        }else if(typeof shapeValue === 'object' && shapeValue !== null && !Array.isArray(shapeValue)){
+            // 递归检查嵌套对象
+            if(!(isDeepType(objValue, shapeValue as Shape))){
+                throw new Error(`递归检查未通过${shapeKey}`)
                 return false
             }
         }else{
+            // 检查基本类型
             if(typeof objValue !== shapeValue){
+                throw new Error(`基本类型检查未通过${shapeKey}`)
                 return false;
             }
         }
-
     }
 
+
     return true
-
 }
-

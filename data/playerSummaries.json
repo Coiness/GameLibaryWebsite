@@ -1,0 +1,26 @@
+{
+  "response": {
+    "players": [
+      {
+        "steamid": "76561199045657363",
+        "communityvisibilitystate": 3,
+        "profilestate": 1,
+        "personaname": "Coiness",
+        "commentpermission": 1,
+        "profileurl": "https://steamcommunity.com/profiles/76561199045657363/",
+        "avatar": "https://avatars.steamstatic.com/a41301d4b9e1d39dda8f88f1c057b74f846482c7.jpg",
+        "avatarmedium": "https://avatars.steamstatic.com/a41301d4b9e1d39dda8f88f1c057b74f846482c7_medium.jpg",
+        "avatarfull": "https://avatars.steamstatic.com/a41301d4b9e1d39dda8f88f1c057b74f846482c7_full.jpg",
+        "avatarhash": "a41301d4b9e1d39dda8f88f1c057b74f846482c7",
+        "lastlogoff": 1752336301,
+        "personastate": 1,
+        "primaryclanid": "103582791429521408",
+        "timecreated": 1586600680,
+        "personastateflags": 0,
+        "gameextrainfo": "Melvor Idle",
+        "gameid": "1267910",
+        "loccountrycode": "GF"
+      }
+    ]
+  }
+}

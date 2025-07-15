@@ -12,7 +12,11 @@ interface game{
     playtime_disconnected: number
 }
 
-export interface GetOwnedGamesResponse{
+export interface OwnedGames{
     game_count:number;
     games:game[]
+}
+
+export interface GetOwnedGamesResponse{
+    response:OwnedGames
 }

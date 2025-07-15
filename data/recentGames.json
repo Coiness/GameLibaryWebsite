@@ -1,0 +1,51 @@
+{
+  "response": {
+    "total_count": 4,
+    "games": [
+      {
+        "appid": 250900,
+        "name": "The Binding of Isaac: Rebirth",
+        "playtime_2weeks": 2169,
+        "playtime_forever": 16872,
+        "img_icon_url": "16d46c8630499bfc54d20745ac90786a302cd643",
+        "playtime_windows_forever": 16723,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 148,
+        "playtime_deck_forever": 0
+      },
+      {
+        "appid": 1267910,
+        "name": "Melvor Idle",
+        "playtime_2weeks": 1869,
+        "playtime_forever": 68151,
+        "img_icon_url": "88eca64c662c128de095b4e452881398ac71969c",
+        "playtime_windows_forever": 14215,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 53935,
+        "playtime_deck_forever": 0
+      },
+      {
+        "appid": 993090,
+        "name": "Lossless Scaling",
+        "playtime_2weeks": 718,
+        "playtime_forever": 2535,
+        "img_icon_url": "42900f430ed7828d2dfa25f07ac02e3de96bc520",
+        "playtime_windows_forever": 2535,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0,
+        "playtime_deck_forever": 0
+      },
+      {
+        "appid": 881100,
+        "name": "Noita",
+        "playtime_2weeks": 34,
+        "playtime_forever": 34,
+        "img_icon_url": "a21dbd1d3bd01f0a688f2d7029978d5cdbe14e74",
+        "playtime_windows_forever": 0,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 34,
+        "playtime_deck_forever": 0
+      }
+    ]
+  }
+}

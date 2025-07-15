@@ -10,7 +10,11 @@ export interface game {
     playtime_deck_forever: number
 }
 
-export interface getRecentlyPlayedGamesResponse{
+export interface RecentlyPlayedGames{
     total_count:number;
     games:game[]
+}
+
+export interface GetRecentlyPlayedGamesResponse{
+    response: RecentlyPlayedGames
 }
