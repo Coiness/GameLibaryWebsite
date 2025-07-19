@@ -1,0 +1,762 @@
+[
+  {
+    "appid": 250900,
+    "name": "The Binding of Isaac: Rebirth",
+    "playtime_forever": 16872,
+    "img_icon_url": "16d46c8630499bfc54d20745ac90786a302cd643",
+    "playtime_2weeks": 2169
+  },
+  {
+    "appid": 1267910,
+    "name": "Melvor Idle",
+    "playtime_forever": 68151,
+    "img_icon_url": "88eca64c662c128de095b4e452881398ac71969c",
+    "playtime_2weeks": 1869
+  },
+  {
+    "appid": 993090,
+    "name": "Lossless Scaling",
+    "playtime_forever": 2535,
+    "img_icon_url": "42900f430ed7828d2dfa25f07ac02e3de96bc520",
+    "playtime_2weeks": 718
+  },
+  {
+    "appid": 881100,
+    "name": "Noita",
+    "playtime_forever": 34,
+    "img_icon_url": "a21dbd1d3bd01f0a688f2d7029978d5cdbe14e74",
+    "playtime_2weeks": 34
+  },
+  {
+    "appid": 1454400,
+    "name": "Cookie Clicker",
+    "playtime_forever": 15446,
+    "img_icon_url": "e0c68bbdb2813528f0802ef6751655e33a42c9bb"
+  },
+  {
+    "appid": 582010,
+    "name": "Monster Hunter: World",
+    "playtime_forever": 10491,
+    "img_icon_url": "6ec147f2d423f435e15eb79b3d82f771913de634"
+  },
+  {
+    "appid": 1245620,
+    "name": "ELDEN RING",
+    "playtime_forever": 8220,
+    "img_icon_url": "b6e290dd5a92ce98f89089a207733c70c41a1871"
+  },
+  {
+    "appid": 413150,
+    "name": "Stardew Valley",
+    "playtime_forever": 4759,
+    "img_icon_url": "35d1377200084a4034238c05b0c8930451e2fb40"
+  },
+  {
+    "appid": 431960,
+    "name": "Wallpaper Engine",
+    "playtime_forever": 4060,
+    "img_icon_url": "72edaed9d748c6cf7397ffb1c83f0b837b9ebd9d"
+  },
+  {
+    "appid": 646570,
+    "name": "Slay the Spire",
+    "playtime_forever": 4047,
+    "img_icon_url": "33ea124ea8c03a9ce7012d34c3b348a351612fca"
+  },
+  {
+    "appid": 367520,
+    "name": "Hollow Knight",
+    "playtime_forever": 3733,
+    "img_icon_url": "7b87aecda896ae747a6e40e3eb63498cb8b84df2"
+  },
+  {
+    "appid": 1172470,
+    "name": "Apex Legends",
+    "playtime_forever": 3534,
+    "img_icon_url": "6cc35932af780289ae3d8d5cdbfe9cd545decad2"
+  },
+  {
+    "appid": 275850,
+    "name": "No Man's Sky",
+    "playtime_forever": 2956,
+    "img_icon_url": "fccb20f309ac5ae05b3cb4576a8a3357edf86f2e"
+  },
+  {
+    "appid": 239140,
+    "name": "Dying Light",
+    "playtime_forever": 2872,
+    "img_icon_url": "d575b4ba3480fe20aaeda8e8f498c3e47033069d"
+  },
+  {
+    "appid": 1468810,
+    "name": "鬼谷八荒 Tale of Immortal",
+    "playtime_forever": 2848,
+    "img_icon_url": "51a531645724df6f419ce89c1d8c34b2b2355428"
+  },
+  {
+    "appid": 1174180,
+    "name": "Red Dead Redemption 2",
+    "playtime_forever": 2230,
+    "img_icon_url": "5106abd9c1187a97f23295a0ba9470c94804ec6c"
+  },
+  {
+    "appid": 3117820,
+    "name": "Sultan's Game",
+    "playtime_forever": 2176,
+    "img_icon_url": "81e37cf744f52d7af999e208dfd4c087a1f3db29"
+  },
+  {
+    "appid": 251150,
+    "name": "The Legend of Heroes: Trails in the Sky",
+    "playtime_forever": 2152,
+    "img_icon_url": "1dff8800665a241285116d4a90a5d291bac10942"
+  },
+  {
+    "appid": 413420,
+    "name": "Danganronpa 2: Goodbye Despair",
+    "playtime_forever": 1633,
+    "img_icon_url": "912bb82c4ee0f7734ed28c97fde01a1371978896"
+  },
+  {
+    "appid": 567640,
+    "name": "Danganronpa V3: Killing Harmony",
+    "playtime_forever": 1516,
+    "img_icon_url": "27e0b08d9506a81bc9f8d3a3616fb455106bfa68"
+  },
+  {
+    "appid": 3094010,
+    "name": "HENPRI",
+    "playtime_forever": 1487,
+    "img_icon_url": "6bac40187aaf2813d055341c9ab57c1973923d63"
+  },
+  {
+    "appid": 1623730,
+    "name": "Palworld",
+    "playtime_forever": 1303,
+    "img_icon_url": "f5523077a8f4c923c2e8d8c17794b3319035fa73"
+  },
+  {
+    "appid": 1669980,
+    "name": "Volcano Princess",
+    "playtime_forever": 1154,
+    "img_icon_url": "af41b6930b60ea5a3d8e21ba04933284253f42cf"
+  },
+  {
+    "appid": 1293830,
+    "name": "Forza Horizon 4",
+    "playtime_forever": 1146,
+    "img_icon_url": "7c993f9089d54fe2767efec47b75a7009cdd632e"
+  },
+  {
+    "appid": 1189490,
+    "name": "觅长生",
+    "playtime_forever": 1100,
+    "img_icon_url": "f242f2631b18b9644781ba1df9af65ae18e59bf9"
+  },
+  {
+    "appid": 2358720,
+    "name": "Black Myth: Wukong",
+    "playtime_forever": 1097,
+    "img_icon_url": "764ad8ff458f7020d63a3f7f0abf6ad8882c05df"
+  },
+  {
+    "appid": 271590,
+    "name": "Grand Theft Auto V Legacy",
+    "playtime_forever": 1078,
+    "img_icon_url": "1e72f87eb927fa1485e68aefaff23c7fd7178251"
+  },
+  {
+    "appid": 960090,
+    "name": "Bloons TD 6",
+    "playtime_forever": 1016,
+    "img_icon_url": "c5f0b67c8beeb6be99abe2ad8db2cada5d5ccff0"
+  },
+  {
+    "appid": 668630,
+    "name": "Tricolour Lovestory",
+    "playtime_forever": 757,
+    "img_icon_url": "4821569fdcde5100761669d70050480d1509db48"
+  },
+  {
+    "appid": 391730,
+    "name": "Crashlands",
+    "playtime_forever": 752,
+    "img_icon_url": "8fb73009c5f9918aab9717d8f9db1a4604733297"
+  },
+  {
+    "appid": 1225780,
+    "name": "他人世界末",
+    "playtime_forever": 709,
+    "img_icon_url": "e414e3c94a4c228b6119df07d65766f51ce9491a"
+  },
+  {
+    "appid": 774171,
+    "name": "Muse Dash",
+    "playtime_forever": 646,
+    "img_icon_url": "e0f4a24aa5b44887dc3467ee3e9ceabf46082041"
+  },
+  {
+    "appid": 1260320,
+    "name": "Party Animals",
+    "playtime_forever": 567,
+    "img_icon_url": "868cd2d22c96076658ff5b572c4dc790c200de7e"
+  },
+  {
+    "appid": 1145360,
+    "name": "Hades",
+    "playtime_forever": 530,
+    "img_icon_url": "8a3fca36a00883e8066263ad35dd15d77a1f9abc"
+  },
+  {
+    "appid": 1966720,
+    "name": "Lethal Company",
+    "playtime_forever": 488,
+    "img_icon_url": "8393f321a62a9ef0be762c81565d2caea4fb7da6"
+  },
+  {
+    "appid": 1776970,
+    "name": "Tsuki ni Yorisou Otome no Sahou",
+    "playtime_forever": 477,
+    "img_icon_url": "25c85e9806f3944fe0be46b55c19d8677f400e55"
+  },
+  {
+    "appid": 1238840,
+    "name": "Battlefield™ 1",
+    "playtime_forever": 453,
+    "img_icon_url": "325c78f6940b57a43b65468d2dc10e22601b0ec5"
+  },
+  {
+    "appid": 550,
+    "name": "Left 4 Dead 2",
+    "playtime_forever": 439,
+    "img_icon_url": "7d5a243f9500d2f8467312822f8af2a2928777ed"
+  },
+  {
+    "appid": 1237970,
+    "name": "Titanfall® 2",
+    "playtime_forever": 392,
+    "img_icon_url": "d73c7e572859bd7490947d1aeab5c33eda18fd64"
+  },
+  {
+    "appid": 1426210,
+    "name": "It Takes Two",
+    "playtime_forever": 383,
+    "img_icon_url": "6b15f6d81c4fc52056f4928b363b7fac591a945b"
+  },
+  {
+    "appid": 897220,
+    "name": "Summer Pockets",
+    "playtime_forever": 372,
+    "img_icon_url": "7ef305395bfdb297e6bc3760a253cc7fd7d801cb"
+  },
+  {
+    "appid": 1718570,
+    "name": "ASTLIBRA ～生きた証～ Revision",
+    "playtime_forever": 367,
+    "img_icon_url": "e7c445fc57e408d34f6d831588026cace13d3150"
+  },
+  {
+    "appid": 814380,
+    "name": "Sekiro™: Shadows Die Twice",
+    "playtime_forever": 345,
+    "img_icon_url": "2704fb9c5465045d00a5b19a0cb1e9bdabbd15cc"
+  },
+  {
+    "appid": 412830,
+    "name": "STEINS;GATE",
+    "playtime_forever": 341,
+    "img_icon_url": "adddf0c18983e5b0e2a8967939a774a201589674"
+  },
+  {
+    "appid": 310360,
+    "name": "Higurashi When They Cry Hou - Ch.1 Onikakushi",
+    "playtime_forever": 332,
+    "img_icon_url": "8347887b669eb9459f5359516bb7bb99cc0dc8e3"
+  },
+  {
+    "appid": 3224420,
+    "name": "Milky Way Idle",
+    "playtime_forever": 331,
+    "img_icon_url": "b2a1aa9fe36635f363345dbdcec7e6184a833b47"
+  },
+  {
+    "appid": 739630,
+    "name": "Phasmophobia",
+    "playtime_forever": 326,
+    "img_icon_url": "125673b382059f666ec81477173380a76e1df0be"
+  },
+  {
+    "appid": 1281930,
+    "name": "tModLoader",
+    "playtime_forever": 311,
+    "img_icon_url": "e8a125078a31b8475994e8ce4d8d6fdd6becc131"
+  },
+  {
+    "appid": 105600,
+    "name": "Terraria",
+    "playtime_forever": 310,
+    "img_icon_url": "858961e95fbf869f136e1770d586e0caefd4cfac"
+  },
+  {
+    "appid": 2242710,
+    "name": "Koi x Shin Ai Kanojo",
+    "playtime_forever": 310,
+    "img_icon_url": "f56db038a03b5d5ba1b01c3d26522e48dba301d8"
+  },
+  {
+    "appid": 2567870,
+    "name": "Chained Together",
+    "playtime_forever": 308,
+    "img_icon_url": "231b8f624ff26721431fe5749fa5ab5bccd75ff4"
+  },
+  {
+    "appid": 1444480,
+    "name": "Turing Complete",
+    "playtime_forever": 290,
+    "img_icon_url": "31368bd4540d977bf572fb413a58169f14583550"
+  },
+  {
+    "appid": 730,
+    "name": "Counter-Strike 2",
+    "playtime_forever": 261,
+    "img_icon_url": "8dbc71957312bbd3baea65848b545be9eae2a355"
+  },
+  {
+    "appid": 1325200,
+    "name": "Nioh 2 – The Complete Edition",
+    "playtime_forever": 259,
+    "img_icon_url": "3c0fa7884573c619e65a173f00aaa6c0f499d2ec"
+  },
+  {
+    "appid": 1277930,
+    "name": "Riddle Joker",
+    "playtime_forever": 246,
+    "img_icon_url": "28db420c6e5a1278095860727b9d33ddd21c90e5"
+  },
+  {
+    "appid": 2704110,
+    "name": "Aliya: Timelink",
+    "playtime_forever": 230,
+    "img_icon_url": "c43f9080337f709ae1843886e721dd4740fd7aba"
+  },
+  {
+    "appid": 40700,
+    "name": "Machinarium",
+    "playtime_forever": 224,
+    "img_icon_url": "33e11d52f0a2335671d7bf73341c14ae6e596809"
+  },
+  {
+    "appid": 304930,
+    "name": "Unturned",
+    "playtime_forever": 188,
+    "img_icon_url": "e18009fb628b35953826efe47dc3be556b689f4c"
+  },
+  {
+    "appid": 2818450,
+    "name": "Putrika 1st.cut:The Reason She Must Perish",
+    "playtime_forever": 183,
+    "img_icon_url": "f62bfcbfd7b10cbe3f65ab95867b83b4479a139f"
+  },
+  {
+    "appid": 2143680,
+    "name": "Noctuary",
+    "playtime_forever": 182,
+    "img_icon_url": "187ad4ec0d13efd7639a0eaa4f2c7b9a54c835c1"
+  },
+  {
+    "appid": 2527500,
+    "name": "MiSide",
+    "playtime_forever": 174,
+    "img_icon_url": "c262acd97d45a10d3102cb654dace25af7b05977"
+  },
+  {
+    "appid": 714010,
+    "name": "Aimlabs",
+    "playtime_forever": 170,
+    "img_icon_url": "15347de11efc127539c388e585af9e92d10d5189"
+  },
+  {
+    "appid": 1250760,
+    "name": "Far Away",
+    "playtime_forever": 169,
+    "img_icon_url": "163ed2b719e4ad511990d7139e3831d2d0739e55"
+  },
+  {
+    "appid": 1086940,
+    "name": "Baldur's Gate 3",
+    "playtime_forever": 166,
+    "img_icon_url": "d866cae7ea1e471fdbc206287111f1b642373bd9"
+  },
+  {
+    "appid": 702050,
+    "name": "The Song of Saya",
+    "playtime_forever": 162,
+    "img_icon_url": "e4ca7d6ba65dece45b7ad365c41a1153f808d308"
+  },
+  {
+    "appid": 289070,
+    "name": "Sid Meier's Civilization VI",
+    "playtime_forever": 134,
+    "img_icon_url": "9dc914132fec244adcede62fb8e7524a72a7398c"
+  },
+  {
+    "appid": 282800,
+    "name": "100% Orange Juice",
+    "playtime_forever": 130,
+    "img_icon_url": "baaf4be38deeb8a631567ee6c651ca23b65c834a"
+  },
+  {
+    "appid": 477160,
+    "name": "Human Fall Flat",
+    "playtime_forever": 129,
+    "img_icon_url": "15c6f6a4d69633a63ee410b24a2417f16d803b06"
+  },
+  {
+    "appid": 1329410,
+    "name": "雀魂麻将(MahjongSoul)",
+    "playtime_forever": 124,
+    "img_icon_url": "262db8949a5c064435dcb3aec4182c919dfd1976"
+  },
+  {
+    "appid": 262060,
+    "name": "Darkest Dungeon®",
+    "playtime_forever": 115,
+    "img_icon_url": "af219e7f9ed0506cb0954aabb7f24a45e38d28e4"
+  },
+  {
+    "appid": 1604000,
+    "name": "Milk outside a bag of milk outside a bag of milk",
+    "playtime_forever": 101,
+    "img_icon_url": "7dad6702d578a13255dd238fb7a6e6742f5d9d1f"
+  },
+  {
+    "appid": 268910,
+    "name": "Cuphead",
+    "playtime_forever": 76,
+    "img_icon_url": "c19f1bd916b6d171e94089d03112ec4e4e4da84e"
+  },
+  {
+    "appid": 424840,
+    "name": "Little Nightmares",
+    "playtime_forever": 74,
+    "img_icon_url": "1904c041f963b5e2cb22b56c370444517cc4e288"
+  },
+  {
+    "appid": 204360,
+    "name": "Castle Crashers",
+    "playtime_forever": 60,
+    "img_icon_url": "9b7625f9b70f103397fd0416fd92abb583db8659"
+  },
+  {
+    "appid": 1446780,
+    "name": "MONSTER HUNTER RISE",
+    "playtime_forever": 57,
+    "img_icon_url": "560dd364b52075b783424961a43c01f9b69fde15"
+  },
+  {
+    "appid": 976730,
+    "name": "Halo: The Master Chief Collection",
+    "playtime_forever": 56,
+    "img_icon_url": "196a45d8df1981ff6b6b1872a38dc38f6c22875d"
+  },
+  {
+    "appid": 568220,
+    "name": "Lobotomy Corporation",
+    "playtime_forever": 55,
+    "img_icon_url": "43faff1c904babf6a84888b594f7554afeee494e"
+  },
+  {
+    "appid": 1238810,
+    "name": "Battlefield™ V",
+    "playtime_forever": 50,
+    "img_icon_url": "23ded6a957b5ec7525679c2e7bdac90c0653dbc8"
+  },
+  {
+    "appid": 524220,
+    "name": "NieR:Automata™",
+    "playtime_forever": 49,
+    "img_icon_url": "ec431ecb2a5178c5a01bb15550f112f93af029bb"
+  },
+  {
+    "appid": 238320,
+    "name": "Outlast",
+    "playtime_forever": 48,
+    "img_icon_url": "46bd3df92d4693d3b2af113bf8f31c2cbdadb20a"
+  },
+  {
+    "appid": 394360,
+    "name": "Hearts of Iron IV",
+    "playtime_forever": 35,
+    "img_icon_url": "67b15e2336311b4b4f1eb5c802af0c0dbe644195"
+  },
+  {
+    "appid": 410890,
+    "name": "Higurashi When They Cry Hou - Ch.2 Watanagashi",
+    "playtime_forever": 33,
+    "img_icon_url": "09b93c6ba9cc305e1e76518d94cdee8cc25f2d84"
+  },
+  {
+    "appid": 1230140,
+    "name": "ATRI -My Dear Moments-",
+    "playtime_forever": 33,
+    "img_icon_url": "40e9052985afac2661d5391a8a74ff1e2d837fdf"
+  },
+  {
+    "appid": 347620,
+    "name": "Gaokao.Love.100Days",
+    "playtime_forever": 28,
+    "img_icon_url": "55c2031e026a5e3b96b3052afe3a6bed664f545f"
+  },
+  {
+    "appid": 113200,
+    "name": "The Binding of Isaac",
+    "playtime_forever": 27,
+    "img_icon_url": "383cf045ca20625db18f68ef5e95169012118b9e"
+  },
+  {
+    "appid": 438100,
+    "name": "VRChat",
+    "playtime_forever": 23,
+    "img_icon_url": "52c5f93bd9f8de008307f5fad95023600267462c"
+  },
+  {
+    "appid": 1568590,
+    "name": "Goose Goose Duck",
+    "playtime_forever": 23,
+    "img_icon_url": "3b802d5010d6d5d72c93a8565b260c6042cc9390"
+  },
+  {
+    "appid": 1325860,
+    "name": "VTube Studio",
+    "playtime_forever": 18,
+    "img_icon_url": "afd5c41656a67009dd4ffd7919acdcfb9844bd2a"
+  },
+  {
+    "appid": 473690,
+    "name": "Absolver",
+    "playtime_forever": 13,
+    "img_icon_url": "2b104291f0b2574f9c8c36c668be5c2d5351352e"
+  },
+  {
+    "appid": 504230,
+    "name": "Celeste",
+    "playtime_forever": 6,
+    "img_icon_url": "04cb7aa0b497a3962e6b1655b7fd81a2cc95d18b"
+  },
+  {
+    "appid": 2536840,
+    "name": "GINKA",
+    "playtime_forever": 6,
+    "img_icon_url": "8bc70458776dcfa5ddb5d464ec3c3f70bce1a8eb"
+  },
+  {
+    "appid": 457140,
+    "name": "Oxygen Not Included",
+    "playtime_forever": 5,
+    "img_icon_url": "d37534163ebac8351e0bda0bf30f8f2174c921b6"
+  },
+  {
+    "appid": 2977660,
+    "name": "Cats",
+    "playtime_forever": 5,
+    "img_icon_url": "e08134b51d0af920c18a75627a84ffc12dd9cf71"
+  },
+  {
+    "appid": 1044620,
+    "name": "Aokana - Four Rhythms Across the Blue",
+    "playtime_forever": 3,
+    "img_icon_url": "a00d9c3180443e60ada178223086dca080450e1a"
+  },
+  {
+    "appid": 400,
+    "name": "Portal",
+    "playtime_forever": 1,
+    "img_icon_url": "cfa928ab4119dd137e50d728e8fe703e4e970aff"
+  },
+  {
+    "appid": 3240220,
+    "name": "Grand Theft Auto V Enhanced",
+    "playtime_forever": 1,
+    "img_icon_url": "8355a7bbdb704f727bfba80ec56bc7228991338e"
+  },
+  {
+    "appid": 698780,
+    "name": "Doki Doki Literature Club",
+    "playtime_forever": 1,
+    "img_icon_url": "2bf8ed528d8f251428435a6f6ffc8e4e8e4b294c"
+  },
+  {
+    "appid": 620,
+    "name": "Portal 2",
+    "playtime_forever": 0,
+    "img_icon_url": "2e478fc6874d06ae5baf0d147f6f21203291aa02"
+  },
+  {
+    "appid": 227300,
+    "name": "Euro Truck Simulator 2",
+    "playtime_forever": 0,
+    "img_icon_url": "adc18a4fc9adc0330144b76d61cbda68bb2394a0"
+  },
+  {
+    "appid": 264380,
+    "name": "Narcissu 1st & 2nd",
+    "playtime_forever": 0,
+    "img_icon_url": "d3fba65a8220901ec5d7e8a7ffb629d80c23bb88"
+  },
+  {
+    "appid": 218620,
+    "name": "PAYDAY 2",
+    "playtime_forever": 0,
+    "img_icon_url": "a6abc0d0c1e79c0b5b0f5c8ab81ce9076a542414"
+  },
+  {
+    "appid": 251290,
+    "name": "The Legend of Heroes: Trails in the Sky SC",
+    "playtime_forever": 0,
+    "img_icon_url": "c0a3778f947e731d3a55e2efc13198fbd57a73e8"
+  },
+  {
+    "appid": 413410,
+    "name": "Danganronpa: Trigger Happy Havoc",
+    "playtime_forever": 0,
+    "img_icon_url": "221f5116c2c1d46fa71a7b014b5e882334a2d0da"
+  },
+  {
+    "appid": 436670,
+    "name": "The Legend of Heroes: Trails in the Sky the 3rd",
+    "playtime_forever": 0,
+    "img_icon_url": "1fb9610ea9419c4f320b29ff27ea6cac4fbfd2cb"
+  },
+  {
+    "appid": 472870,
+    "name": "Higurashi When They Cry Hou - Ch.3 Tatarigoroshi",
+    "playtime_forever": 0,
+    "img_icon_url": "6e917df25d1caad0f9edabc5d7e93ae121ef0130"
+  },
+  {
+    "appid": 475550,
+    "name": "Beholder",
+    "playtime_forever": 0,
+    "img_icon_url": "1025e7d1606b1e7a7f17048532039d78241e9f5d"
+  },
+  {
+    "appid": 526490,
+    "name": "Higurashi When They Cry Hou - Ch.4 Himatsubushi",
+    "playtime_forever": 0,
+    "img_icon_url": "45703a724fe8f5e995cda09a0691cb9485cbec4f"
+  },
+  {
+    "appid": 553850,
+    "name": "HELLDIVERS™ 2",
+    "playtime_forever": 0,
+    "img_icon_url": "c3dff088e090f81d6e3d88eabbb67732647c69cf"
+  },
+  {
+    "appid": 577480,
+    "name": "Higurashi When They Cry Hou - Ch.5 Meakashi",
+    "playtime_forever": 0,
+    "img_icon_url": "5c1528733d38b148e0257e965fa0151e85e55ad3"
+  },
+  {
+    "appid": 668350,
+    "name": "Higurashi When They Cry Hou - Ch.6 Tsumihoroboshi",
+    "playtime_forever": 0,
+    "img_icon_url": "2154139d6b754c344b4298e818e66f0f9f5c4346"
+  },
+  {
+    "appid": 825630,
+    "name": "STEINS;GATE 0",
+    "playtime_forever": 0,
+    "img_icon_url": "32ed7216259d8bd3e339bb6d8a0376c4b0c8cad3"
+  },
+  {
+    "appid": 862690,
+    "name": "Kid,napper: Gosh, I'm Kidnapped by a Pupil",
+    "playtime_forever": 0,
+    "img_icon_url": "6a6c81514ff39e23a4d8a81466635af3ae8b51ac"
+  },
+  {
+    "appid": 35140,
+    "name": "Batman: Arkham Asylum GOTY Edition",
+    "playtime_forever": 0,
+    "img_icon_url": "e52f91ecb0d3f20263e96fe188de1bcc8c91643e"
+  },
+  {
+    "appid": 200260,
+    "name": "Batman: Arkham City GOTY",
+    "playtime_forever": 0,
+    "img_icon_url": "746ecf3ce44b2525eb7ad643e76a3b60913d2662"
+  },
+  {
+    "appid": 208650,
+    "name": "Batman™: Arkham Knight",
+    "playtime_forever": 0,
+    "img_icon_url": "f6c2ce13796844750dfbd01685fb009eeac4bf70"
+  },
+  {
+    "appid": 990630,
+    "name": "The Last Campfire",
+    "playtime_forever": 0,
+    "img_icon_url": "a6601e3e8776e4c71d20869ae2ca1cad23d41cc0"
+  },
+  {
+    "appid": 1034940,
+    "name": "Higurashi When They Cry Hou - Ch.7 Minagoroshi",
+    "playtime_forever": 0,
+    "img_icon_url": "232366ea6b1498ef8ad7b939f50eb7de6e9a200e"
+  },
+  {
+    "appid": 1049100,
+    "name": "Christmas Tina -泡沫冬景-",
+    "playtime_forever": 0,
+    "img_icon_url": "d0e907cb02f52f8d6bedad3c33fe106eeda24435"
+  },
+  {
+    "appid": 1111460,
+    "name": "Bunny eShop",
+    "playtime_forever": 0,
+    "img_icon_url": "9b9fb61df18b1a418293155b74315f54ff74b2a4"
+  },
+  {
+    "appid": 1243670,
+    "name": "Higurashi When They Cry Hou - Ch.8 Matsuribayashi",
+    "playtime_forever": 0,
+    "img_icon_url": "7eb9aa1b671ba74eb5f8cff96388b04535710ab0"
+  },
+  {
+    "appid": 1310990,
+    "name": "Bishojo Mangekyo Kotowari to Meikyu no Shojo",
+    "playtime_forever": 0,
+    "img_icon_url": "7c0b3a0796a9134f9b2780a3418de875bff0bfb4"
+  },
+  {
+    "appid": 1340130,
+    "name": "Aokana - EXTRA1",
+    "playtime_forever": 0,
+    "img_icon_url": "e4c08cacca639677863f6b2a95afb80128f130e0"
+  },
+  {
+    "appid": 616560,
+    "name": "Ultimate Epic Battle Simulator",
+    "playtime_forever": 0,
+    "img_icon_url": "808ec0919be68550c107fc513522633dc7656885"
+  },
+  {
+    "appid": 1765350,
+    "name": "候鸟",
+    "playtime_forever": 0,
+    "img_icon_url": "301483a1a4c9841d7357d9f918b9c6eb0e868aa5"
+  },
+  {
+    "appid": 1222670,
+    "name": "The Sims™ 4",
+    "playtime_forever": 0,
+    "img_icon_url": "ca6bc8b2411bce4a2cd325ab75f0204bc3a4ad98"
+  },
+  {
+    "appid": 2429860,
+    "name": "Living With Sister: Monochrome Fantasy",
+    "playtime_forever": 0,
+    "img_icon_url": "aa642ef1d0e6f232bc39a8ebe36f1cc1849469df"
+  }
+]

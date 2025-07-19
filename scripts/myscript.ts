@@ -2,7 +2,7 @@ import { steamAPI } from "./steamAPI.ts";
 import {}from "./../pojo/index.ts"
 import {Console, error} from 'node:console';
 import * as fs from 'node:fs'
-import { s_friendlists,s_ownedgames,s_playersummaries,s_recentgames,s_steamlevel } from "./fetchsript/index.ts";
+import { s_friendlists,s_ownedgames,s_playersummaries,s_recentgames,s_steamlevel,m_games} from "./fetchsript/index.ts";
 import { resolve } from "node:path";
 
 
@@ -22,7 +22,7 @@ const s_queue = [
 ]
 
 async function myscripts(s_queue:Function[]) {
-    while(s_queue.length > 0){
+    /*while(s_queue.length > 0){
         const scriptToRun = s_queue.shift();
 
         if(scriptToRun){
@@ -37,7 +37,8 @@ async function myscripts(s_queue:Function[]) {
                 await new Promise(resolve => setTimeout(resolve,5000))
             }
         }
-    }
+    }*/
+    m_games();
     console.log("脚本执行完毕")
 }
 

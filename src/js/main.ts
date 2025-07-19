@@ -1,0 +1,72 @@
+/**
+ * 数据加载与初始化
+ * 1.【完成】异步加载所有json文件
+ * 2.【完成】数据整合处理，将所有的游戏整合为一个统一的游戏列表
+ * 
+ * 页面内容填充
+ * 1.【更改实现方式】填充个人信息卡片 头像 名字 好友代码
+ * 2.填充我的游戏库模块 小图标无限滚动 
+ * 3.填充游戏时长统计模块 遍历计算total_time 可以在数据整合处计算
+ * 4.填充最近两周模块 动态创建div 胶囊图+游戏最近游戏时长+总游戏时长+进度条展示
+ * 
+ * 用户交互响应
+ * 1.实现导航栏滚动变色
+ * 2.实现导航栏平滑滚动
+ * 3.实现好友代码点击复制功能
+ * 4.实现数据查询与排序功能
+ */
+
+import { GameInfo } from "../../pojo/index.ts";
+
+interface AppData{
+    allGames:GameInfo[];
+}
+
+async function loadAllData():Promise<AppData>{
+    try{
+        const [allGames] = await Promise.all([fetch('./data/allGames.json')
+            .then(res => res.json())
+        ])
+
+        return{allGames};
+    }catch (error){
+        console.log("数据加载出错",error)
+        throw new Error("加载数据出错")
+    }
+}
+
+function populateGameIcons(allGames:GameInfo[]){
+    try{
+        const scroller = document.getElementById("game-icon-scroller")
+        if(!scroller){
+            console.log("未找到id为game-icon-scroller的元素")
+            return
+        }
+        const fragment = document.createDocumentFragment();
+
+        for(const game of allGames){
+            const icon = document.createElement("img");
+
+            icon.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/library_600x900_2x.jpg`;
+            icon.alt = game.name;
+            icon.title = game.name;
+            icon.className = 'game-icon';
+            icon.loading = 'lazy';
+
+            fragment.appendChild(icon);
+        }
+
+        scroller.appendChild
+    }catch(error){
+        console.log("小图标创建失败",error)
+    }
+}
+
+async function main(){
+    try{
+        const{allGames} = await loadAllData();
+        populateGameIcons(allGames)
+    }catch(error){
+        console.log("main.js出错",error)
+    }
+}
