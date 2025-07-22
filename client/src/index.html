@@ -24,41 +24,24 @@
     <main>
         <section id="banner"></section>
         <section id="stats">
-            <h2>我的游戏库</h2>
-            <p>拥有<span id="game-count" class="emphasize_char">0</span>个游戏</p>
+            <h2>游戏库</h2>
+            <p>拥有<span id="games_number" class="emphasize_char"></span>个游戏</p>
+            <p>在Steam上已经玩了<span id="total_playtime" class="emphasize_char">占位</span>小时</p>
+            <p>最近玩了<span id="recent_playtime" class="emphasize_char">占位</span>小时</p>
             <!--这个div用于通过JS动态填充循环的游戏图标-->
             <div id="game-icon-scroller" class="scroller">
                 <!--游戏图标将由JS插入此处-->
             </div>
         </section>
-        <section>
-            <h2>游戏时长统计</h2>
-            <p>我已经在Steam上玩了<span id="total-playtime" class="emphasize_char">0</span>小时</p>
-            <h3>游戏时长排行 Top 3</h3>
-            <ul id="top-3-games">
-                <!--此处用js插入游戏-->
-            </ul>
+        <section id="data-show">
+            <div id="data-table">
+                <div>游戏</div>
+                <button id="sort-by-total">总游戏时长</button>
+                <button id="sort-by-recent">最近两周游戏时长</button>
+            </div>
+            <div id="game-list-container"></div>
         </section>
-        <section id="recent">
-            <h2>最近两周游戏时长</h2>
-            <p>最近在Steam上玩了<span id="recent-playtime" class="emphasize_char">0</span>小时</p>
-            <h3>最近在玩</h3>
-            <ul id="recently-played-games">
-                <!--此处用js插入游戏-->
-            </ul>
-        </section>
-        <section id="search">
-            <h2>游戏数据查询</h2>
-            <form>
-                <div id="search-games">
-                    <input type="text" id="search-input" aria-placeholder="请输入游戏名称..."></input>
-                    <button type="submit">查询</button>
-                </div>
-                <button type="button" id="sort-by-total">总时长</button>
-                <button type="button" id="sort-by-recent">最近两周时长</button>
-            </form>
-            <div id="search-results"></div>
-        </section>
+       
     </main>
 
     <script type="module" src="./js/main.js"></script>

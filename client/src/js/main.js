@@ -24,6 +24,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var total_playtime_mins = 0;
+var recent_playtime_mins = 0;
+var games_number = 0;
+var max_playtime_forever = 0;
+var max_playtime_recent = 0;
 function loadAllData() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -45,29 +50,165 @@ function populateGameIcons(allGames) {
             console.log("未找到id为game-icon-scroller的元素");
             return;
         }
+        // 1. 创建内部包裹层
+        const scrollerInner = document.createElement('div');
+        scrollerInner.className = 'scroller__inner';
+        // 2. 创建一个文档片段来高效地添加元素
         const fragment = document.createDocumentFragment();
         for (const game of allGames) {
+            //顺便统计几个数据
+            games_number++;
+            total_playtime_mins += game.playtime_forever;
+            if (max_playtime_forever < game.playtime_forever) {
+                max_playtime_forever = game.playtime_forever;
+                console.log("max_playtime_forever:", max_playtime_forever);
+            }
+            if (game.playtime_2weeks) {
+                recent_playtime_mins += game.playtime_2weeks;
+                max_playtime_recent = (max_playtime_recent - game.playtime_2weeks) > 0 ? max_playtime_recent : game.playtime_2weeks;
+                console.log("max_playtime_recent:", max_playtime_recent);
+            }
             const icon = document.createElement("img");
             icon.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/library_600x900_2x.jpg`;
             icon.alt = game.name;
             icon.title = game.name;
             icon.className = 'game-icon';
-            icon.loading = 'lazy';
-            icon.onerror = () => icon.remove;
+            icon.loading = 'lazy'; // 懒加载图片
             fragment.appendChild(icon);
         }
-        scroller.appendChild(fragment);
+        // 3. 复制并添加两遍图标，以实现无缝滚动
+        scrollerInner.appendChild(fragment.cloneNode(true));
+        scrollerInner.appendChild(fragment.cloneNode(true));
+        // 4. 将包裹层添加到主容器中
+        scroller.appendChild(scrollerInner);
     }
     catch (error) {
         console.log("小图标创建失败", error);
     }
 }
+function add_some_data() {
+    try {
+        const span_games_number = document.getElementById("games_number");
+        const span_total_playtime = document.getElementById("total_playtime");
+        const span_recent_playtime = document.getElementById("recent_playtime");
+        if (!span_games_number) {
+            console.log("未找到id为span_games_number的元素");
+            return;
+        }
+        if (!span_total_playtime) {
+            console.log("未找到id为total_playtime的元素");
+            return;
+        }
+        if (!span_recent_playtime) {
+            console.log("未找到id为recent_playtime的元素");
+            return;
+        }
+        const total_playtime_hours = (total_playtime_mins / 60).toFixed(1);
+        const recent_playtime_hours = (recent_playtime_mins / 60).toFixed(1);
+        span_games_number.textContent = `${games_number}`;
+        span_total_playtime.textContent = `${total_playtime_hours}`;
+        span_recent_playtime.textContent = `${recent_playtime_hours}`;
+    }
+    catch (error) {
+        console.log("增加统计数据时出错", error);
+    }
+}
+function createGameItem(Game, maxLogPlaytimeforever, maxLogPlaytimerecent) {
+    const item = document.createElement("div");
+    item.className = "game-item";
+    const playtime_forever_hour = (Game.playtime_forever / 60).toFixed(1);
+    const playtime_recent_hour = (Game.playtime_2weeks ? (Game.playtime_2weeks / 60).toFixed(1) : 0);
+    item.dataset.totalplaytime = `${playtime_forever_hour}`;
+    item.dataset.recentplaytime = `${playtime_recent_hour}`;
+    const icon = document.createElement("img");
+    icon.src = `http://media.steampowered.com/steam/apps/${Game.appid}/header.jpg`;
+    icon.alt = Game.name;
+    icon.className = 'game-item-icon';
+    icon.loading = 'lazy';
+    const game_info = document.createElement("div");
+    game_info.className = "game-item-info";
+    const name = document.createElement("div");
+    name.textContent = Game.name;
+    name.className = "game-item-name";
+    const playtime_f = document.createElement("div");
+    playtime_f.className = "game-item-time_forever";
+    playtime_f.textContent = `总游戏时长：${playtime_forever_hour}h`;
+    const playtime_r = document.createElement("div");
+    playtime_r.className = "game-item-time_recent";
+    playtime_r.textContent = `最近两周游戏时长：${playtime_recent_hour}h`;
+    const progressBarForever = document.createElement("div");
+    progressBarForever.className = "progess-bar";
+    const progressBarFillForever = document.createElement("div");
+    progressBarFillForever.className = "progress-bar-fill-forever";
+    const GameLogPlaytimeForever = Math.log(Game.playtime_forever + 1);
+    const progressPercentForever = maxLogPlaytimeforever > 0 ? (GameLogPlaytimeForever / maxLogPlaytimeforever) * 100 : 0;
+    progressBarFillForever.style.width = `${progressPercentForever}%`;
+    const progressBarRecent = document.createElement("div");
+    progressBarRecent.className = "progess-bar";
+    const progressBarFillRecent = document.createElement("div");
+    progressBarFillRecent.className = "progress-bar-fill-recent";
+    const GameLogPlaytimeRecent = Math.log(Game.playtime_2weeks ? (Game.playtime_2weeks + 1) : 1);
+    const progressPercentRecent = maxLogPlaytimerecent > 0 ? (GameLogPlaytimeRecent / maxLogPlaytimerecent) * 100 : 0;
+    progressBarFillRecent.style.width = `${progressPercentRecent}%`;
+    progressBarForever.append(progressBarFillForever);
+    progressBarRecent.append(progressBarFillRecent);
+    game_info.append(name, playtime_f, progressBarForever, playtime_r, progressBarRecent);
+    item.append(icon, game_info);
+    return item;
+}
+function createGameItemList(allGames, container) {
+    try {
+        if (!container) {
+            console.log("未找到id为game-item-list的元素");
+            return;
+        }
+        const fragment = document.createDocumentFragment();
+        const maxLogPlaytimeforever = Math.log(max_playtime_forever + 1);
+        const maxLogPlaytimerecent = Math.log(max_playtime_recent + 1);
+        for (const game of allGames) {
+            fragment.append(createGameItem(game, maxLogPlaytimeforever, maxLogPlaytimerecent));
+        }
+        container.append(fragment);
+    }
+    catch (error) {
+        console.log("游戏列表创建失败", error);
+    }
+}
+function sortGameList(container, sortBy) {
+    const items = Array.from(container.querySelectorAll('.game-item'));
+    items.sort((a, b) => {
+        const timeA = Number(a.dataset[sortBy] || 0);
+        const timeB = Number(b.dataset[sortBy] || 0);
+        return timeB - timeA;
+    });
+    items.forEach(items => container.appendChild(items));
+}
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
+        var _a, _b;
         try {
             console.log("程序开始执行");
             const { allGames } = yield loadAllData();
             populateGameIcons(allGames);
+            add_some_data();
+            const gameListContainer = document.getElementById('game-list-container');
+            if (gameListContainer) {
+                console.log("找到了container");
+                createGameItemList(allGames, gameListContainer);
+                sortGameList(gameListContainer, 'totalplaytime');
+                (_a = document.getElementById('sort-by-total')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+                    var _a, _b;
+                    sortGameList(gameListContainer, 'totalplaytime');
+                    (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
+                    (_b = document.getElementById('sort-by-total')) === null || _b === void 0 ? void 0 : _b.classList.add('active');
+                });
+                (_b = document.getElementById('sort-by-recent')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
+                    var _a, _b;
+                    sortGameList(gameListContainer, 'recentplaytime');
+                    (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
+                    (_b = document.getElementById('sort-by-recent')) === null || _b === void 0 ? void 0 : _b.classList.add('active');
+                });
+            }
         }
         catch (error) {
             console.log("main.js出错", error);
