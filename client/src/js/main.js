@@ -183,12 +183,26 @@ function sortGameList(container, sortBy) {
     });
     items.forEach(items => container.appendChild(items));
 }
+function setupNavbarScrollEffect() {
+    const header = document.querySelector('header');
+    if (!header)
+        return;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            header.classList.add('scrolled');
+        }
+        else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b;
+        var _a, _b, _c;
         try {
             console.log("程序开始执行");
             const { allGames } = yield loadAllData();
+            setupNavbarScrollEffect();
             populateGameIcons(allGames);
             add_some_data();
             const gameListContainer = document.getElementById('game-list-container');
@@ -207,6 +221,23 @@ function main() {
                     sortGameList(gameListContainer, 'recentplaytime');
                     (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
                     (_b = document.getElementById('sort-by-recent')) === null || _b === void 0 ? void 0 : _b.classList.add('active');
+                });
+                (_c = document.getElementById('steamfriendid')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
+                    const div_steamfriendid = document.getElementById('steamfriendid');
+                    const idToCopy = div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.textContent;
+                    if (!idToCopy) {
+                        console.log("好友代码区块里一定要有好友代码");
+                        return;
+                    }
+                    navigator.clipboard.writeText(idToCopy).then(() => {
+                        const originalContent = div_steamfriendid.textContent;
+                        div_steamfriendid.textContent = '成功复制';
+                        div_steamfriendid.classList.add('copied');
+                        setTimeout(() => {
+                            div_steamfriendid.textContent = originalContent;
+                            div_steamfriendid.classList.remove("copied");
+                        }, 1500);
+                    });
                 });
             }
         }

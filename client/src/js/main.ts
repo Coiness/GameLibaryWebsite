@@ -219,10 +219,26 @@ function sortGameList(container:HTMLElement,sortBy:'totalplaytime'|'recentplayti
     items.forEach(items => container.appendChild(items))
 }
 
+function setupNavbarScrollEffect(){
+    const header = document.querySelector('header');
+    if(!header) return;
+
+    window.addEventListener('scroll',()=>{
+        if(window.scrollY > 200){
+            header.classList.add('scrolled')
+        }else{
+            header.classList.remove('scrolled')
+        }
+    })
+}
+
 async function main(){
     try{
         console.log("程序开始执行")
         const{allGames} = await loadAllData();
+
+        setupNavbarScrollEffect();
+
         populateGameIcons(allGames)
         add_some_data()
         
@@ -243,6 +259,28 @@ async function main(){
                 document.querySelector('.sort-button.active')?.classList.remove('active');
                 document.getElementById('sort-by-recent')?.classList.add('active')
             }) 
+            document.getElementById('steamfriendid')?.addEventListener('click',()=>{
+                const div_steamfriendid = document.getElementById('steamfriendid');
+                const idToCopy = div_steamfriendid?.textContent
+                if(!idToCopy){
+                    console.log("好友代码区块里一定要有好友代码")
+                    return
+                }
+
+                navigator.clipboard.writeText(idToCopy).then(()=>{
+                    const originalContent = '1085391635';
+                    div_steamfriendid.textContent = '成功复制';
+                    div_steamfriendid.classList.add('copied');
+
+                    setTimeout(()=>{
+                        div_steamfriendid.textContent = originalContent;
+                        div_steamfriendid.classList.remove("copied")
+                    },1500)
+                })
+            })
+
+
+            
         }
     }catch(error){
         console.log("main.js出错",error)

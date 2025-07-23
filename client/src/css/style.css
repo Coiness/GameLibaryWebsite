@@ -1,43 +1,90 @@
-body{
-    background-color: lightslategray;
-    margin: 0;
-    color: white;
+/* ==========================================================================
+   1. 全局变量与基础样式
+   ========================================================================== */
+:root {
+    --white: #eeeeee;
+    --blue: #00adb5;
+    --lightblack: #393e46;
+    --black: #222831;
+    --text: #c7d5e0;
 }
 
-header{
+html,
+body {
+    overscroll-behavior-y: contain;
+}
+
+body {
+    background-color: var(--blue);
+    margin: 0;
+    color: var(--black);
+}
+
+section {
+    padding: 20px 0px;
+}
+
+
+/* ==========================================================================
+   2. 头部与导航栏
+   ========================================================================== */
+header {
     position: fixed;
+    color:var(--white);
+    height: 40px;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;    /*用border作为盒子大小根据，保证全部内容都在盒子里*/
+    padding: 10px 20px;
+    box-sizing: border-box;
+    /*用border作为盒子大小根据，保证全部内容都在盒子里*/
     transition: background-color 0.5s ease;
-}
-header .scrolled{
-    background-color: rgba(22,26,33,0.85);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-nav{
-    display: inline-flex;
-}
-nav .moveto{
-    color: #c7d5e0;
-    padding:0 10px;
-    border-radius: 4px;
-    cursor: pointer;
+    z-index: 10;
     
-    transition: background-color 0.3s,color 0.3s;
-}
-nav .moveto:hover{
-    background-color: rgba(255,255,255,0.1);
-    color: #ffffff;
 }
 
-#banner{
+header.scrolled {
+    background-color: rgba(22, 26, 33, 0.85);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
+#steamfriendid{
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s color 0.3s;
+    margin-right: 1rem;
+    width: 100px;
+}
+
+#steamfriendid:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#steamfriendid.copied{
+    background-color: lightgreen;
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+
+/* ==========================================================================
+   3. 主要内容区域
+   ========================================================================== */
+#banner {
     background-image: url(./../images/ocean_beach_aerial_view_134429_1366x768.jpg);
     width: 100%;
     height: 200px;
@@ -45,68 +92,101 @@ nav .moveto:hover{
     background-position: center;
     margin: 0;
     background-size: cover;
+    background-color: transparent;
 }
 
-#game-icon-scroller{
+
+/* ==========================================================================
+   4. 游戏图标滚动组件
+   ========================================================================== */
+#game-icon-scroller {
     width: 100%;
     overflow: hidden;
-    -webkit-mask: linear-gradient(90deg,transparent,white 20%,white 80%,transparent);
-    mask:linear-gradient(90deg,transparent,white 20%, white 80%,transparent)
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent)
 }
 
-.scroller__inner{
+.scroller__inner {
     display: flex;
     flex-wrap: nowrap;
     width: fit-content;
-
     animation: scroll 60s linear infinite;
 }
 
-@keyframes scroll {
-    to{
-        /*向左移动一半的宽度*/
-        transform: translateX(calc(-50% - 00.5rem));
-    }
-}
-
-#game-icon-scroller:hover .scroller__inner{
+#game-icon-scroller:hover .scroller__inner {
     animation-play-state: paused;
 }
 
-.game-icon{
+.game-icon {
     width: auto;
     height: 250px;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#data-show{
+@keyframes scroll {
+    to {
+        /*向左移动一半的宽度*/
+        transform: translateX(calc(-50% - 0.5rem));
+    }
+}
+
+
+/* ==========================================================================
+   5. 数据展示与排序区域
+   ========================================================================== */
+#data-show {
     display: flex;
     flex-wrap: wrap;
 }
 
-#data-table{
+#data-table {
     width: 100%;
-    height: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
 }
 
-#game-list-container{
+#data-table div {
+    margin-right: auto;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#data-table button {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--lightblack);
+    background-color: transparent;
+    color: var(--black);
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-right:1.2rem;
+}
+
+
+/* ==========================================================================
+   6. 游戏列表项组件
+   ========================================================================== */
+#game-list-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.game-item{
+.game-item {
     display: flex;
     width: 100%;
     padding: 1rem;
 }
 
-.game-item-icon{
+.game-item-icon {
     height: 180px;
     width: auto;
 }
 
-.game-item-info{
+.game-item-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -115,42 +195,52 @@ nav .moveto:hover{
     justify-items: start;
 }
 
-.game-item-name{
+.game-item-name {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-.game-item-time_forever{
+.game-item-time_forever {
     margin-top: auto;
     font-size: 1rem;
 }
 
-.game-item-time_recent{
+.game-item-time_recent {
     font-size: 1rem;
 }
 
-.progess-bar{
+
+/* ==========================================================================
+   7. 进度条组件
+   ========================================================================== */
+.progess-bar {
     width: 100%;
     height: 8px;
     background-color: #1a2c3d;
     border-radius: 4px;
-    margin-top:0.75rem;
+    margin-top: 0.75rem;
     overflow: hidden;
 }
 
-.progress-bar-fill-forever{
+.progress-bar-fill-forever {
     height: 8px;
     background-color: #66c0f4;
     border-radius: 4px;
     transition: width 0.5s ease-out;
 }
 
-.progress-bar-fill-recent{
+.progress-bar-fill-recent {
     height: 8px;
     background-color: #a3cf05;
     border-radius: 4px;
     transition: width 0.5s ease-out;
 }
 
+h2{
+    padding: 2rem;
+}
 
+p{
+    padding: 0 2em;
+}
