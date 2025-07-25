@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coiness的steam游戏库</title>
+    <title>Coiness的游戏库</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!--导航栏-->
     <header>
-            Coiness的游戏库
-        <!--个人信息名片-->
-        <div class="card">
+        <h1 class="header__brand">Coiness的游戏库</h1>
 
-            <img src="https://avatars.steamstatic.com/a41301d4b9e1d39dda8f88f1c057b74f846482c7.jpg" alt="头像是也">
-            Coiness
-            <div id="steamfriendid" title="点击复制">1085391635</div>
+        <div class="user-card">
+            <img class="user-card__avatar" src="https://avatars.steamstatic.com/a41301d4b9e1d39dda8f88f1c057b74f846482c7.jpg" alt="Steam头像">
+            <span class="user-card__name">Coiness</span>
+            <div id="steamfriendid" class="user-card__id" title="点击复制">1085391635</div>
         </div>
     </header>
 
     <main>
-        <section id="banner"></section>
-        <section id="stats">
-            <h2>游戏库</h2>
-            <p>拥有<span id="games_number" class="emphasize_char"></span>个游戏</p>
-            <p>在Steam上已经玩了<span id="total_playtime" class="emphasize_char">占位</span>小时</p>
-            <p>最近玩了<span id="recent_playtime" class="emphasize_char">占位</span>小时</p>
-            <!--这个div用于通过JS动态填充循环的游戏图标-->
-            <div id="game-icon-scroller" class="scroller">
+        <section class="banner"></section>
+        
+        <section class="stats-section">
+            <h2 class="section-title">数据总览</h2>
+            <p>拥有<span id="games_number" class="stats-section__highlight"></span>个游戏</p>
+            <p>在Steam上已经玩了<span id="total_playtime" class="stats-section__highlight">占位</span>小时</p>
+            <p>最近玩了<span id="recent_playtime" class="stats-section__highlight">占位</span>小时</p>
+
+            <div id="game-icon-scroller" class="game-icon-scroller">
                 <!--游戏图标将由JS插入此处-->
             </div>
         </section>
-        <section id="data-show">
-            <div id="data-table">
-                <div>游戏列表</div>
-                <button id="sort-by-total">总游戏时长</button>
-                <button id="sort-by-recent">最近两周游戏时长</button>
+
+        <section class="gamelist-section">
+            <nav class="list-toolbar">
+                    <h2 class="section-title">游戏列表</h2>
+                    <div class="sort-controls">
+                        <button id="sort-by-total" class="button active">总游戏时长</button>
+                        <button id="sort-by-recent" class="button">最近两周游戏时长</button>
+                    </div>
+            </nav>
+            <div id="game-list-container" class="game-list-container">
+                <!--游戏列表由js插入此处-->
             </div>
-            <div id="game-list-container"></div>
         </section>
-       
     </main>
 
+    <!--最后引入js文件，一方面加快加载速度，另一个方面确保插入部分已经完成-->
     <script type="module" src="./js/main.js"></script>
-    <script type="module" src="./test.js"></script>
 </body>
 </html>
+
+存在问题， 1.漂浮文本 2.过度使用ID 3.缺少通用类

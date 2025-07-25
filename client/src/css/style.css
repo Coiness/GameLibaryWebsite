@@ -1,246 +1,293 @@
-/* ==========================================================================
-   1. 全局变量与基础样式
-   ========================================================================== */
-:root {
-    --white: #eeeeee;
-    --blue: #00adb5;
-    --lightblack: #393e46;
-    --black: #222831;
-    --text: #c7d5e0;
+/*
+codereview
+存在的问题
+1.过度使用ID选择器进行样式化
+2.重复的样式和缺乏组件化
+3.不一致的单位和间距
+4.全局标签选择器过于宽泛
+*/
+
+
+/* 1.全局变量与基础样式
+*/
+
+:root{
+    /*颜色变量*/
+    --color-primary: #00adb5;
+    --color-light: #eeeeee;
+    --color-dark-1: #393e46;
+    --color-dark-2: #222831;
+    --color-text-light: #c7d5e0;
+    --color-success: #a3cf05;
+    --color-info: #66c0f4;
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
 }
 
-html,
-body {
+html,body{
     overscroll-behavior-y: contain;
 }
 
-body {
-    background-color: var(--blue);
+body{
+    background-color: var(--color-dark-2);
+    color: var(--color-light);
+    /*font-family是在引入字体吗 ——不是，这是在指定字体*/
+    font-family: system-ui,-apple-system,BlinkMacSystemFont;
+    box-sizing: border-box;
     margin: 0;
-    color: var(--black);
+    padding: 0;
 }
 
-section {
-    padding: 20px 0px;
+/* 这个>是什么意思？ ——子选择器，只选择作为<main>的直接子元素的<section>标签*/
+main > section{
+    padding: var(--space-xl) var(--space-lg);
+    box-sizing: border-box;
 }
 
-
-/* ==========================================================================
-   2. 头部与导航栏
-   ========================================================================== */
-header {
+/* 2.头部组件 */
+header{
     position: fixed;
-    color:var(--white);
-    height: 40px;
-    top: 0;
-    left: 0;
+    top:0; 
+    left:0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: var(--space-sm) var(--space-lg);
     box-sizing: border-box;
-    /*用border作为盒子大小根据，保证全部内容都在盒子里*/
-    transition: background-color 0.5s ease;
+    /*这个属性是什么意思？盒子模型margin padding content这种？ 
+    ——默认content-box 只作用于内容，border-box中设置的width和height都作用于元素*/
+    transition: background-color 0.4s ease,box-shadow 0.4s ease;/*这段属性实现了什么？*/
     z-index: 10;
-    
 }
 
-header.scrolled {
-    background-color: rgba(22, 26, 33, 0.85);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+header.scrolled{
+    background-color: rgba(22, 26, 33,0.85);
+    backdrop-filter: blur(5px);
+    /*这个属性是什么意思 ——添加毛玻璃或磨砂效果，会对背后的元素进行模糊处理*/
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.card{
+.header__brand{
+    font-size:var(--space-lg);
+    font-weight: bold;
+}
+
+.user-card{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: var(--space-md)
 }
 
+.user-card__avatar{
+    height: 40px;
+    width: 40px;
+}
 
+.user-card__name{
+    align-items: center;
+    justify-content: center;
+}
 
-#steamfriendid{
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
+.user-card__id{
+    padding: var(--space-sm) var(--space-md);
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s color 0.3s;
-    margin-right: 1rem;
+    transition: background-color 0.2s , color 0.2s;
+    justify-content: center;
+    align-items: center;
     width: 100px;
 }
 
-#steamfriendid:hover{
+.user-card__id:hover{
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-#steamfriendid.copied{
-    background-color: lightgreen;
-    color: dodgerblue;
+.user-card__id.copied{
+    background-color: var(--color-success);
+    color: var(--color-dark-2);
     font-weight: bold;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
 }
 
-
-/* ==========================================================================
-   3. 主要内容区域
-   ========================================================================== */
-#banner {
-    background-image: url(./../images/ocean_beach_aerial_view_134429_1366x768.jpg);
+/*3.Banner组件*/
+.banner{
+    background-image: url(/src/images/ocean_beach_aerial_view_134429_1366x768.jpg);
     width: 100%;
     height: 200px;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0;
-    background-size: cover;
     background-color: transparent;
+    background-size: cover;
+    overflow: hidden;
+    margin: 0;
 }
 
-
-/* ==========================================================================
-   4. 游戏图标滚动组件
-   ========================================================================== */
-#game-icon-scroller {
+/*4.游戏图标滚动组件*/
+.game-icon-scroller{
     width: 100%;
     overflow: hidden;
-    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
-    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent)
+    -webkit-mask: linear-gradient(90deg,transparent,white 15%,white 85%,transparent);
+    mask: linear-gradient(90deg,transparent,white 15%,white 85%,transparent);
+     /*这段什么意思
+     —— 这个属性是遮罩，它允许你使用图像或渐变来决定一个元素哪些部分可见，哪些部分透明
+     —— 开头是完全透明，到15%的位置变为完全不透明，保持不透明到85%的位置
+     —— mask是为了兼容老版本
+     */
 }
 
-.scroller__inner {
+.scroller__inner{
     display: flex;
-    flex-wrap: nowrap;
+    gap: var(--space-md);
     width: fit-content;
-    animation: scroll 60s linear infinite;
+    animation:scroll 120s linear infinite
 }
 
-#game-icon-scroller:hover .scroller__inner {
-    animation-play-state: paused;
+.game-icon-scroller .scroller__inner:hover{
+    animation-play-state:paused ;
 }
 
-.game-icon {
+.game-icon{
+    height: 200px;
     width: auto;
-    height: 250px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+    padding: 10px 0px;/*增加上下边界，使图片放大时不会被容器截去高度*/
+    align-items: center;
+}
+.game-icon:hover{
+    transform: scale(1.1); /*什么意思 缩放至原来的1.1倍*/
 }
 
-@keyframes scroll {
-    to {
-        /*向左移动一半的宽度*/
-        transform: translateX(calc(-50% - 0.5rem));
+@keyframes scroll{
+    to{
+        transform: translateX(calc(-50% -(var(--space-md)/2)));/*如何计算？*/
     }
 }
 
-
-/* ==========================================================================
-   5. 数据展示与排序区域
-   ========================================================================== */
-#data-show {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#data-table {
+/*5.列表工具栏与按钮组件*/
+.list-toolbar{
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    margin-left: 2rem;
+    margin-bottom:var(--space-lg);
 }
 
-#data-table div {
-    margin-right: auto;
-    font-size: 1.2rem;
-    font-weight: bold;
+.section-title{
+    font-size: 1.8rem;
+    margin: 0;
 }
 
-#data-table button {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--lightblack);
+.sort-controls{
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.button{
+    padding: var(--space-sm) var(--space-md);
+    border:  1px solid var(--color-dark-1);
     background-color: transparent;
-    color: var(--black);
+    color: var(--color-light);
     font-size: 0.9rem;
     font-weight: bold;
-    margin-right:1.2rem;
+    cursor: pointer;
+    border-radius: var(--space-xs);
+    transition:  all 0.2s ease;
 }
 
+.button:hover{
+    background-color: var(--color-dark-1);
+    border-color: var(--color-primary);
+}
 
-/* ==========================================================================
-   6. 游戏列表项组件
-   ========================================================================== */
-#game-list-container {
+button.active{
+    background-color: var(--color-primary);
+    color: var(--color-dark-2);
+    border-color: var(--color-primary);
+}
+
+/*6.游戏列表组件*/
+.game-list-container{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--space-md);
 }
 
-.game-item {
+.game-item{
     display: flex;
     width: 100%;
-    padding: 1rem;
+    background-color: #2a475e;
+    overflow: hidden;
+    transition: transform 0.2s ease,box-shadow 0.2s ease;
+}
+.game-item:hover{
+    transform: translateY(-10px);/*选中时浮起的实现*/
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-.game-item-icon {
-    height: 180px;
-    width: auto;
+.game-item__icon{
+    flex-shrink:0;
+    width: 30%;
+    height: auto;
 }
 
-.game-item-info {
+.game-item__info{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 0 1rem;
-    align-items: start;
-    justify-items: start;
+    padding: var(--space-sm) var(--space-md);
 }
 
-.game-item-name {
-    font-size: 2rem;
+.game-item__name{
+    font-size: var(--space-xl);
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-sm);
 }
 
-.game-item-time_forever {
-    margin-top: auto;
+.game-item__playtime{
     font-size: 1rem;
+    color:var(--color-light);
+    padding: 8px 0px;
 }
 
-.game-item-time_recent {
-    font-size: 1rem;
+.game-item__playtime--forever{
+    margin-top: auto; 
+    /*这实现了什么功能 ——将元素推到底部*/
 }
 
 
-/* ==========================================================================
-   7. 进度条组件
-   ========================================================================== */
-.progess-bar {
+/*7.进度条组件*/
+.progress-bar{
     width: 100%;
     height: 8px;
     background-color: #1a2c3d;
     border-radius: 4px;
-    margin-top: 0.75rem;
+    margin-top: 6px;
     overflow: hidden;
+    z-index: 5;
 }
 
-.progress-bar-fill-forever {
+.progress-bar__fill{
     height: 8px;
+    border-radius: 4px;
+    transition: 0.5s ease-out;
+}
+
+.progress-bar__fill--forever{
     background-color: #66c0f4;
-    border-radius: 4px;
-    transition: width 0.5s ease-out;
 }
 
-.progress-bar-fill-recent {
-    height: 8px;
+.progress-bar__fill--recent{
     background-color: #a3cf05;
-    border-radius: 4px;
-    transition: width 0.5s ease-out;
 }
 
-h2{
-    padding: 2rem;
-}
-
-p{
-    padding: 0 2em;
-}

@@ -24,11 +24,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var total_playtime_mins = 0;
-var recent_playtime_mins = 0;
-var games_number = 0;
-var max_playtime_forever = 0;
-var max_playtime_recent = 0;
+//模块化函数
 function loadAllData() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -43,6 +39,61 @@ function loadAllData() {
         }
     });
 }
+//从游戏数据中计算统计信息
+function calculateStats(games) {
+    //     使用for循环实现
+    //     let ans:StatsData = {
+    //         gamesNumber:0,
+    //         totalPlaytimeMins:0,
+    //         recentPlaytimeMins:0,
+    //         maxPlaytimeForever:0,
+    //         maxPlaytimeRecent:0
+    //     }
+    //     for(const game of games){
+    //         ans.gamesNumber++;
+    //         ans.totalPlaytimeMins+=game.playtime_forever
+    //         ans.recentPlaytimeMins += game.playtime_2weeks ?? 0
+    //         ans.maxPlaytimeForever = Math.max(ans.maxPlaytimeForever,game.playtime_forever)
+    //         ans.maxPlaytimeRecent = Math.max(ans.maxPlaytimeRecent,game.playtime_2weeks??0)
+    //     }
+    //     return ans;
+    // 
+    //     使用reduce实现
+    return games.reduce((stats, game) => {
+        var _a, _b;
+        // 'stats' 就是上一次循环返回的累加器对象
+        // 'game' 是当前正在处理的游戏,games的遍历对象
+        stats.gamesNumber++;
+        stats.totalPlaytimeMins += game.playtime_forever;
+        stats.recentPlaytimeMins += (_a = game.playtime_2weeks) !== null && _a !== void 0 ? _a : 0;
+        stats.maxPlaytimeForever = Math.max(stats.maxPlaytimeForever, game.playtime_forever);
+        stats.maxPlaytimeRecent = Math.max(stats.maxPlaytimeRecent, (_b = game.playtime_2weeks) !== null && _b !== void 0 ? _b : 0);
+        return stats;
+    }, {
+        // reduce中第一个参数stats的初始值
+        gamesNumber: 0,
+        totalPlaytimeMins: 0,
+        recentPlaytimeMins: 0,
+        maxPlaytimeForever: 0,
+        maxPlaytimeRecent: 0,
+    });
+}
+function displayStats(stats) {
+    try {
+        const span_games_number = document.getElementById("games_number");
+        const span_total_playtime = document.getElementById("total_playtime");
+        const span_recent_playtime = document.getElementById("recent_playtime");
+        if (span_games_number)
+            span_games_number.textContent = `${stats.gamesNumber}`;
+        if (span_total_playtime)
+            span_total_playtime.textContent = `${(stats.totalPlaytimeMins / 60).toFixed(1)}`;
+        if (span_recent_playtime)
+            span_recent_playtime.textContent = `${(stats.recentPlaytimeMins / 60).toFixed(1)}`;
+    }
+    catch (error) {
+        console.log("增加统计数据时出错", error);
+    }
+}
 function populateGameIcons(allGames) {
     try {
         const scroller = document.getElementById("game-icon-scroller");
@@ -56,18 +107,6 @@ function populateGameIcons(allGames) {
         // 2. 创建一个文档片段来高效地添加元素
         const fragment = document.createDocumentFragment();
         for (const game of allGames) {
-            //顺便统计几个数据
-            games_number++;
-            total_playtime_mins += game.playtime_forever;
-            if (max_playtime_forever < game.playtime_forever) {
-                max_playtime_forever = game.playtime_forever;
-                console.log("max_playtime_forever:", max_playtime_forever);
-            }
-            if (game.playtime_2weeks) {
-                recent_playtime_mins += game.playtime_2weeks;
-                max_playtime_recent = (max_playtime_recent - game.playtime_2weeks) > 0 ? max_playtime_recent : game.playtime_2weeks;
-                console.log("max_playtime_recent:", max_playtime_recent);
-            }
             const icon = document.createElement("img");
             icon.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/library_600x900_2x.jpg`;
             icon.alt = game.name;
@@ -86,33 +125,6 @@ function populateGameIcons(allGames) {
         console.log("小图标创建失败", error);
     }
 }
-function add_some_data() {
-    try {
-        const span_games_number = document.getElementById("games_number");
-        const span_total_playtime = document.getElementById("total_playtime");
-        const span_recent_playtime = document.getElementById("recent_playtime");
-        if (!span_games_number) {
-            console.log("未找到id为span_games_number的元素");
-            return;
-        }
-        if (!span_total_playtime) {
-            console.log("未找到id为total_playtime的元素");
-            return;
-        }
-        if (!span_recent_playtime) {
-            console.log("未找到id为recent_playtime的元素");
-            return;
-        }
-        const total_playtime_hours = (total_playtime_mins / 60).toFixed(1);
-        const recent_playtime_hours = (recent_playtime_mins / 60).toFixed(1);
-        span_games_number.textContent = `${games_number}`;
-        span_total_playtime.textContent = `${total_playtime_hours}`;
-        span_recent_playtime.textContent = `${recent_playtime_hours}`;
-    }
-    catch (error) {
-        console.log("增加统计数据时出错", error);
-    }
-}
 function createGameItem(Game, maxLogPlaytimeforever, maxLogPlaytimerecent) {
     const item = document.createElement("div");
     item.className = "game-item";
@@ -123,30 +135,31 @@ function createGameItem(Game, maxLogPlaytimeforever, maxLogPlaytimerecent) {
     const icon = document.createElement("img");
     icon.src = `http://media.steampowered.com/steam/apps/${Game.appid}/header.jpg`;
     icon.alt = Game.name;
-    icon.className = 'game-item-icon';
+    icon.className = 'game-item__icon';
     icon.loading = 'lazy';
     const game_info = document.createElement("div");
-    game_info.className = "game-item-info";
+    game_info.className = "game-item__info";
     const name = document.createElement("div");
     name.textContent = Game.name;
-    name.className = "game-item-name";
+    name.className = "game-item__name";
     const playtime_f = document.createElement("div");
-    playtime_f.className = "game-item-time_forever";
+    playtime_f.className = "game-item__playtime game-item__playtime--forever";
     playtime_f.textContent = `总游戏时长：${playtime_forever_hour}h`;
     const playtime_r = document.createElement("div");
-    playtime_r.className = "game-item-time_recent";
+    playtime_r.className = "game-item__playtime game-item__playtime--recent";
     playtime_r.textContent = `最近两周游戏时长：${playtime_recent_hour}h`;
     const progressBarForever = document.createElement("div");
-    progressBarForever.className = "progess-bar";
+    progressBarForever.className = "progress-bar";
+    /* 进度条 */
     const progressBarFillForever = document.createElement("div");
-    progressBarFillForever.className = "progress-bar-fill-forever";
+    progressBarFillForever.className = "progress-bar__fill progress-bar__fill--forever";
     const GameLogPlaytimeForever = Math.log(Game.playtime_forever + 1);
     const progressPercentForever = maxLogPlaytimeforever > 0 ? (GameLogPlaytimeForever / maxLogPlaytimeforever) * 100 : 0;
     progressBarFillForever.style.width = `${progressPercentForever}%`;
     const progressBarRecent = document.createElement("div");
-    progressBarRecent.className = "progess-bar";
+    progressBarRecent.className = "progress-bar";
     const progressBarFillRecent = document.createElement("div");
-    progressBarFillRecent.className = "progress-bar-fill-recent";
+    progressBarFillRecent.className = "progress-bar__fill progress-bar__fill--recent";
     const GameLogPlaytimeRecent = Math.log(Game.playtime_2weeks ? (Game.playtime_2weeks + 1) : 1);
     const progressPercentRecent = maxLogPlaytimerecent > 0 ? (GameLogPlaytimeRecent / maxLogPlaytimerecent) * 100 : 0;
     progressBarFillRecent.style.width = `${progressPercentRecent}%`;
@@ -156,15 +169,15 @@ function createGameItem(Game, maxLogPlaytimeforever, maxLogPlaytimerecent) {
     item.append(icon, game_info);
     return item;
 }
-function createGameItemList(allGames, container) {
+function createGameItemList(stats, allGames, container) {
     try {
         if (!container) {
             console.log("未找到id为game-item-list的元素");
             return;
         }
         const fragment = document.createDocumentFragment();
-        const maxLogPlaytimeforever = Math.log(max_playtime_forever + 1);
-        const maxLogPlaytimerecent = Math.log(max_playtime_recent + 1);
+        const maxLogPlaytimeforever = Math.log(stats.maxPlaytimeForever + 1);
+        const maxLogPlaytimerecent = Math.log(stats.maxPlaytimeRecent + 1);
         for (const game of allGames) {
             fragment.append(createGameItem(game, maxLogPlaytimeforever, maxLogPlaytimerecent));
         }
@@ -187,8 +200,9 @@ function setupNavbarScrollEffect() {
     const header = document.querySelector('header');
     if (!header)
         return;
+    console.log("1");
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) {
+        if (window.scrollY > 150) {
             header.classList.add('scrolled');
         }
         else {
@@ -196,50 +210,55 @@ function setupNavbarScrollEffect() {
         }
     });
 }
+function handleteamid(mySteamFriendId, div_steamfriendid) {
+    const idToCopy = div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.textContent;
+    if (!idToCopy) {
+        console.log("好友代码区块里一定要有好友代码");
+        return;
+    }
+    navigator.clipboard.writeText(idToCopy).then(() => {
+        const originalContent = `${mySteamFriendId}`;
+        div_steamfriendid.textContent = '成功复制';
+        div_steamfriendid.classList.add('copied');
+        setTimeout(() => {
+            div_steamfriendid.textContent = originalContent;
+            div_steamfriendid.classList.remove("copied");
+        }, 1500);
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
         try {
             console.log("程序开始执行");
+            //1.加载数据
             const { allGames } = yield loadAllData();
-            setupNavbarScrollEffect();
-            populateGameIcons(allGames);
-            add_some_data();
+            const mySteamFriendId = 1085391635;
+            //2.统一进行DOM节点查询
             const gameListContainer = document.getElementById('game-list-container');
+            const sortTotalButton = document.getElementById('sort-by-total');
+            const sortRecentButton = document.getElementById('sort-by-recent');
+            const div_steamfriendid = document.getElementById('steamfriendid');
+            //3.统计数据
+            const stats = calculateStats(allGames);
+            displayStats(stats);
+            //4.渲染游戏库图片
+            populateGameIcons(allGames);
+            //5.渲染游戏列表并设置监听
             if (gameListContainer) {
-                console.log("找到了container");
-                createGameItemList(allGames, gameListContainer);
+                createGameItemList(stats, allGames, gameListContainer);
                 sortGameList(gameListContainer, 'totalplaytime');
-                (_a = document.getElementById('sort-by-total')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
-                    var _a, _b;
-                    sortGameList(gameListContainer, 'totalplaytime');
+                const handleSortClick = (sortBy, clickedButton) => {
+                    var _a;
+                    sortGameList(gameListContainer, sortBy);
                     (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
-                    (_b = document.getElementById('sort-by-total')) === null || _b === void 0 ? void 0 : _b.classList.add('active');
-                });
-                (_b = document.getElementById('sort-by-recent')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
-                    var _a, _b;
-                    sortGameList(gameListContainer, 'recentplaytime');
-                    (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
-                    (_b = document.getElementById('sort-by-recent')) === null || _b === void 0 ? void 0 : _b.classList.add('active');
-                });
-                (_c = document.getElementById('steamfriendid')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
-                    const div_steamfriendid = document.getElementById('steamfriendid');
-                    const idToCopy = div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.textContent;
-                    if (!idToCopy) {
-                        console.log("好友代码区块里一定要有好友代码");
-                        return;
-                    }
-                    navigator.clipboard.writeText(idToCopy).then(() => {
-                        const originalContent = div_steamfriendid.textContent;
-                        div_steamfriendid.textContent = '成功复制';
-                        div_steamfriendid.classList.add('copied');
-                        setTimeout(() => {
-                            div_steamfriendid.textContent = originalContent;
-                            div_steamfriendid.classList.remove("copied");
-                        }, 1500);
-                    });
-                });
+                    clickedButton.classList.add('active');
+                };
+                sortTotalButton === null || sortTotalButton === void 0 ? void 0 : sortTotalButton.addEventListener('click', () => handleSortClick('totalplaytime', sortTotalButton));
+                sortRecentButton === null || sortRecentButton === void 0 ? void 0 : sortRecentButton.addEventListener('click', () => handleSortClick('recentplaytime', sortRecentButton));
             }
+            //6.其他的事件监听
+            setupNavbarScrollEffect();
+            div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.addEventListener('click', () => handleteamid(mySteamFriendId, div_steamfriendid));
         }
         catch (error) {
             console.log("main.js出错", error);

@@ -16,11 +16,16 @@
  * 4.实现数据查询与排序功能
  */
 
-var total_playtime_mins:number = 0;
-var recent_playtime_mins:number = 0;
-var games_number:number = 0;
-var max_playtime_forever = 0;
-var max_playtime_recent = 0;
+
+/**
+ * code review
+ * 1.职责分离，不要在populateGames函数中统计数据
+ * 2.全局变量问题
+ * 3.DOM节点的重复查询问题
+ * 4.事件监听器的代码重复
+ */
+
+//接口定义
 
 interface GameInfo{
     appid:number;
@@ -34,6 +39,16 @@ interface AppData{
     allGames:GameInfo[];
 }
 
+interface StatsData{
+    gamesNumber:number;
+    totalPlaytimeMins:number;
+    recentPlaytimeMins:number;
+    maxPlaytimeForever:number;
+    maxPlaytimeRecent:number;
+}
+
+//模块化函数
+
 async function loadAllData():Promise<AppData>{
     try{
         const [allGames] = await Promise.all([fetch('/src/data/allGames.json')
@@ -44,6 +59,62 @@ async function loadAllData():Promise<AppData>{
     }catch (error){
         console.log("数据加载出错",error)
         throw new Error("加载数据出错")
+    }
+}
+
+//从游戏数据中计算统计信息
+function calculateStats(games:GameInfo[]):StatsData{
+//     使用for循环实现
+//     let ans:StatsData = {
+//         gamesNumber:0,
+//         totalPlaytimeMins:0,
+//         recentPlaytimeMins:0,
+//         maxPlaytimeForever:0,
+//         maxPlaytimeRecent:0
+//     }
+//     for(const game of games){
+//         ans.gamesNumber++;
+//         ans.totalPlaytimeMins+=game.playtime_forever
+//         ans.recentPlaytimeMins += game.playtime_2weeks ?? 0
+//         ans.maxPlaytimeForever = Math.max(ans.maxPlaytimeForever,game.playtime_forever)
+//         ans.maxPlaytimeRecent = Math.max(ans.maxPlaytimeRecent,game.playtime_2weeks??0)
+//     }
+//     return ans;
+// 
+
+//     使用reduce实现
+    return games.reduce((stats,game) => {
+        // 'stats' 就是上一次循环返回的累加器对象
+        // 'game' 是当前正在处理的游戏,games的遍历对象
+        stats.gamesNumber++
+        stats.totalPlaytimeMins += game.playtime_forever
+        stats.recentPlaytimeMins += game.playtime_2weeks ?? 0
+        stats.maxPlaytimeForever = Math.max(stats.maxPlaytimeForever,game.playtime_forever)
+        stats.maxPlaytimeRecent = Math.max(stats.maxPlaytimeRecent,game.playtime_2weeks??0)
+        return stats
+    },{ 
+        // reduce中第一个参数stats的初始值
+        gamesNumber:0,
+        totalPlaytimeMins:0,
+        recentPlaytimeMins:0,
+        maxPlaytimeForever:0,
+        maxPlaytimeRecent:0,
+    }
+    )
+
+}
+
+function displayStats(stats:StatsData){
+    try{
+        const span_games_number = document.getElementById("games_number")
+        const span_total_playtime = document.getElementById("total_playtime")
+        const span_recent_playtime = document.getElementById("recent_playtime")
+
+        if(span_games_number) span_games_number.textContent = `${stats.gamesNumber}`
+        if(span_total_playtime) span_total_playtime.textContent = `${(stats.totalPlaytimeMins /60).toFixed(1)}`
+        if(span_recent_playtime) span_recent_playtime.textContent = `${(stats.recentPlaytimeMins / 60).toFixed(1)}`
+    }catch(error){
+        console.log("增加统计数据时出错",error)
     }
 }
 
@@ -62,19 +133,6 @@ function populateGameIcons(allGames:GameInfo[]){
         // 2. 创建一个文档片段来高效地添加元素
         const fragment = document.createDocumentFragment();
         for(const game of allGames){
-            //顺便统计几个数据
-            games_number++;
-            total_playtime_mins += game.playtime_forever;
-            if(max_playtime_forever < game.playtime_forever){
-                max_playtime_forever = game.playtime_forever
-                console.log("max_playtime_forever:",max_playtime_forever)
-            }
-            if(game.playtime_2weeks){
-                recent_playtime_mins += game.playtime_2weeks
-                max_playtime_recent = (max_playtime_recent - game.playtime_2weeks) > 0?max_playtime_recent:game.playtime_2weeks
-                console.log("max_playtime_recent:",max_playtime_recent)
-            }
-
             const icon = document.createElement("img");
 
             icon.src = `https://cdn.akamai.steamstatic.com/steam/apps/${game.appid}/library_600x900_2x.jpg`;
@@ -98,37 +156,6 @@ function populateGameIcons(allGames:GameInfo[]){
     }
 }
 
-function add_some_data(){
-    try{
-        const span_games_number = document.getElementById("games_number")
-        const span_total_playtime = document.getElementById("total_playtime")
-        const span_recent_playtime = document.getElementById("recent_playtime")
-
-        if(!span_games_number){
-            console.log("未找到id为span_games_number的元素");
-            return
-        }
-        if(!span_total_playtime){
-            console.log("未找到id为total_playtime的元素");
-            return
-        }
-        if(!span_recent_playtime){
-            console.log("未找到id为recent_playtime的元素")
-            return
-        }
-
-        const total_playtime_hours = (total_playtime_mins / 60).toFixed(1)
-        const recent_playtime_hours = (recent_playtime_mins / 60).toFixed(1)
-
-        span_games_number.textContent = `${games_number}`
-        span_total_playtime.textContent = `${total_playtime_hours}`
-        span_recent_playtime.textContent = `${recent_playtime_hours}`
-
-    }catch(error){
-        console.log("增加统计数据时出错",error)
-    }
-}
-
 function createGameItem(Game:GameInfo,maxLogPlaytimeforever:number,maxLogPlaytimerecent:number):HTMLElement{
     const item = document.createElement("div");
     item.className = "game-item"
@@ -142,39 +169,41 @@ function createGameItem(Game:GameInfo,maxLogPlaytimeforever:number,maxLogPlaytim
     const icon = document.createElement("img")
     icon.src = `http://media.steampowered.com/steam/apps/${Game.appid}/header.jpg`
     icon.alt = Game.name
-    icon.className = 'game-item-icon'
+    icon.className = 'game-item__icon'
     icon.loading = 'lazy'
 
     const game_info = document.createElement("div")
-    game_info.className = "game-item-info"
+    game_info.className = "game-item__info"
 
     const name = document.createElement("div")
     name.textContent = Game.name
-    name.className = "game-item-name"
+    name.className = "game-item__name"
 
     const playtime_f = document.createElement("div")
-    playtime_f.className="game-item-time_forever"
+    playtime_f.className="game-item__playtime game-item__playtime--forever"
     playtime_f.textContent = `总游戏时长：${playtime_forever_hour}h`
 
     const playtime_r = document.createElement("div")
-    playtime_r.className="game-item-time_recent"
+    playtime_r.className="game-item__playtime game-item__playtime--recent"
     playtime_r.textContent = `最近两周游戏时长：${playtime_recent_hour}h`
 
     const progressBarForever = document.createElement("div");
-    progressBarForever.className = "progess-bar"
+    progressBarForever.className = "progress-bar"
 
+
+    /* 进度条 */
     const progressBarFillForever = document.createElement("div");
-    progressBarFillForever.className = "progress-bar-fill-forever"
+    progressBarFillForever.className = "progress-bar__fill progress-bar__fill--forever"
     const GameLogPlaytimeForever = Math.log(Game.playtime_forever + 1)
     const progressPercentForever = maxLogPlaytimeforever > 0? (GameLogPlaytimeForever/maxLogPlaytimeforever)*100:0;
     progressBarFillForever.style.width = `${progressPercentForever}%`
 
 
     const progressBarRecent = document.createElement("div");
-    progressBarRecent.className = "progess-bar"
+    progressBarRecent.className = "progress-bar"
 
     const progressBarFillRecent = document.createElement("div");
-    progressBarFillRecent.className = "progress-bar-fill-recent"
+    progressBarFillRecent.className = "progress-bar__fill progress-bar__fill--recent"
     const GameLogPlaytimeRecent = Math.log(Game.playtime_2weeks?(Game.playtime_2weeks+1):1)
     const progressPercentRecent = maxLogPlaytimerecent > 0 ?(GameLogPlaytimeRecent/maxLogPlaytimerecent)*100:0;
     progressBarFillRecent.style.width = `${progressPercentRecent}%`
@@ -188,7 +217,7 @@ function createGameItem(Game:GameInfo,maxLogPlaytimeforever:number,maxLogPlaytim
     return item;
 }
 
-function createGameItemList(allGames:GameInfo[],container:HTMLElement){
+function createGameItemList(stats:StatsData,allGames:GameInfo[],container:HTMLElement){
     try{
         if(!container){
             console.log("未找到id为game-item-list的元素")
@@ -196,8 +225,8 @@ function createGameItemList(allGames:GameInfo[],container:HTMLElement){
         }
         const fragment = document.createDocumentFragment();
 
-        const maxLogPlaytimeforever = Math.log(max_playtime_forever+1)
-        const maxLogPlaytimerecent = Math.log(max_playtime_recent+1)
+        const maxLogPlaytimeforever = Math.log(stats.maxPlaytimeForever+1)
+        const maxLogPlaytimerecent = Math.log(stats.maxPlaytimeRecent+1)
         for(const game of allGames){
             fragment.append(createGameItem(game,maxLogPlaytimeforever,maxLogPlaytimerecent));
         }
@@ -221,10 +250,11 @@ function sortGameList(container:HTMLElement,sortBy:'totalplaytime'|'recentplayti
 
 function setupNavbarScrollEffect(){
     const header = document.querySelector('header');
-    if(!header) return;
+    if(!header) return; 
+    console.log("1")
 
     window.addEventListener('scroll',()=>{
-        if(window.scrollY > 200){
+        if(window.scrollY > 150){
             header.classList.add('scrolled')
         }else{
             header.classList.remove('scrolled')
@@ -232,56 +262,83 @@ function setupNavbarScrollEffect(){
     })
 }
 
+function handlesteamid(mySteamFriendId:number,div_steamfriendid:HTMLElement,isCopying:boolean){
+    if(isCopying) return
+    const idToCopy = div_steamfriendid?.textContent
+    if(!idToCopy){
+        console.log("好友代码区块里一定要有好友代码")
+        return
+    }
+
+    navigator.clipboard.writeText(idToCopy).then(()=>{
+        const originalContent = `${mySteamFriendId}`;
+        div_steamfriendid.textContent = '成功复制';
+        div_steamfriendid.classList.add('copied');
+        isCopying = true;
+
+        setTimeout(()=>{
+            div_steamfriendid.textContent = originalContent;
+            div_steamfriendid.classList.remove("copied");
+            isCopying = false;
+        },1500)
+    })
+}
+
+function debounce<T extends(...args:any[])=>void>(
+    func:T ,
+    delay:number
+):(this:ThisParameterType<T>,...args:Parameters<T>) => void{
+    let timeoutId: number|undefined;
+    return function(this:ThisParameterType<T>,...args:Parameters<T>){
+        clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(()=>{
+            func.apply(this,args);
+        },delay)
+    }
+}
+
 async function main(){
     try{
         console.log("程序开始执行")
+        //1.加载数据
         const{allGames} = await loadAllData();
+        const mySteamFriendId= 1085391635
+        let isCopying = false;
 
-        setupNavbarScrollEffect();
-
-        populateGameIcons(allGames)
-        add_some_data()
-        
+        //2.统一进行DOM节点查询
         const gameListContainer = document.getElementById('game-list-container')
+        const sortTotalButton = document.getElementById('sort-by-total')
+        const sortRecentButton = document.getElementById('sort-by-recent')
+        const div_steamfriendid = document.getElementById('steamfriendid')
+
+        //3.统计数据
+        const stats = calculateStats(allGames)
+        displayStats(stats)
+
+        //4.渲染游戏库图片
+        populateGameIcons(allGames)
+
+        //5.渲染游戏列表并设置监听
         if(gameListContainer){
-            console.log("找到了container")
-            createGameItemList(allGames,gameListContainer);
+
+            createGameItemList(stats,allGames,gameListContainer);
 
             sortGameList(gameListContainer,'totalplaytime')
 
-            document.getElementById('sort-by-total')?.addEventListener('click',()=>{
-                sortGameList(gameListContainer,'totalplaytime')
+            const handleSortClick = (sortBy:'totalplaytime'|'recentplaytime',clickedButton:HTMLElement)=>{
+                sortGameList(gameListContainer,sortBy)
                 document.querySelector('.sort-button.active')?.classList.remove('active');
-                document.getElementById('sort-by-total')?.classList.add('active')
-            })
-            document.getElementById('sort-by-recent')?.addEventListener('click',()=>{
-                sortGameList(gameListContainer,'recentplaytime')
-                document.querySelector('.sort-button.active')?.classList.remove('active');
-                document.getElementById('sort-by-recent')?.classList.add('active')
-            }) 
-            document.getElementById('steamfriendid')?.addEventListener('click',()=>{
-                const div_steamfriendid = document.getElementById('steamfriendid');
-                const idToCopy = div_steamfriendid?.textContent
-                if(!idToCopy){
-                    console.log("好友代码区块里一定要有好友代码")
-                    return
-                }
+                clickedButton.classList.add('active')
+            }
 
-                navigator.clipboard.writeText(idToCopy).then(()=>{
-                    const originalContent = '1085391635';
-                    div_steamfriendid.textContent = '成功复制';
-                    div_steamfriendid.classList.add('copied');
-
-                    setTimeout(()=>{
-                        div_steamfriendid.textContent = originalContent;
-                        div_steamfriendid.classList.remove("copied")
-                    },1500)
-                })
-            })
-
-
+            sortTotalButton?.addEventListener('click',() => handleSortClick('totalplaytime',sortTotalButton))
+            sortRecentButton?.addEventListener('click',() => handleSortClick('recentplaytime',sortRecentButton))
             
         }
+
+        //6.其他的事件监听
+        setupNavbarScrollEffect();
+        div_steamfriendid?.addEventListener('click',()=>handlesteamid(mySteamFriendId,div_steamfriendid,isCopying))
     }catch(error){
         console.log("main.js出错",error)
     }
