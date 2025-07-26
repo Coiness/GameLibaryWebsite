@@ -150,5 +150,13 @@ JS:
 
 CI/CD中，怎么检查代码的？检查什么了？
 uses和run有什么区别？
+CI/CD上传时不会触发？
+
+关于git的操作
+git remote -v 
+git remote add origin_name url
+git remoye set-url origin_name new_url
+git branch -m new_branch_name
+git pull origi_name branch_name
 
 

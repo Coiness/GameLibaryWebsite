@@ -22,6 +22,11 @@ jobs:
             - name: 检查输出的代码（复制到环境中）
               uses: actions/checkout@v4 
 
+            - name: 检查，上一步是不是真给我复制好了
+              run: |
+                pwd
+                ls -l
+
             - name: 设置node.js环境
               uses: actions/setup-node@v4
 
@@ -45,4 +50,18 @@ jobs:
               uses: actions/upload-pages-artifact@v3
               with:
                 path: ./client/dist
+    
+    deploy:
+        needs: build
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{steps.deployment.outputs.page_url}}
+        runs-on: ubuntu-latest
+        steps: 
+            - name: 部署到GithubPages
+              id: deployment
+              uses: actions/deploy-pages@v4
             
