@@ -151,6 +151,10 @@ JS:
 CI/CD中，怎么检查代码的？检查什么了？
 uses和run有什么区别？
 CI/CD上传时不会触发？
+为什么要准备部署的产物
+如何将build任务的成果交给deploy任务
+environment和url是什么？
+网上看到branch和folder是什么，为什么没见到？
 
 关于git的操作
 git remote -v 
