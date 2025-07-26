@@ -1,6 +1,15 @@
 config.js
 config.ts
 
-/node_moudles/
 .env
 *.log
+
+client/dist/
+server/dist/
+
+client/node_moudles
+server/node_moudles
+
+client/.vscode
+server/.vscode
+

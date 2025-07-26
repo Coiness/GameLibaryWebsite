@@ -39,6 +39,7 @@ function myscripts(s_queue) {
             }
         }
         m_games();
+        
         console.log("脚本执行完毕");
     });
 }

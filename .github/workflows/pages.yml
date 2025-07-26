@@ -1,0 +1,48 @@
+name: 部署到GithubPage
+
+on:
+    push: 
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 自己满足一下好奇心
+              run: |
+                pwd
+                ls -l
+
+            - name: 检查输出的代码（复制到环境中）
+              uses: actions/checkout@v4 
+
+            - name: 设置node.js环境
+              uses: actions/setup-node@v4
+
+            - name: 进入客户端目录
+              run: cd client
+
+            - name: 安装依赖并编译 TS
+              working-directory: ./client
+              run: |
+                npm install -g typescript
+                npx tsc
+
+            - name: 复制静态文件到disk中
+              run: |
+                cp client/src/index.html client/dist/
+                cp -r client/src/css client/dist/
+                cp -r client/src/data client/dist/
+                cp -r client/src/images client/dist/
+            
+            - name: 准备要部署的产物
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: ./client/dist
+            
