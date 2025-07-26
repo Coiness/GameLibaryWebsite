@@ -1,8 +1,8 @@
-export * from './friendlist.ts'
-export * from './ownedgames.ts'
-export * from './playersummaries.ts'
-export * from './recentgames.ts'
-export * from './steamlevel.ts'
+export * from './friendlist.js'
+export * from './ownedgames.js'
+export * from './playersummaries.js'
+export * from './recentgames.js'
+export * from './steamlevel.js'
 
 export interface GameInfo{
     appid:number;

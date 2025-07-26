@@ -1,5 +1,5 @@
-import { steamAPI } from "./server/scripts/steamAPI.ts";
-import { steamid } from "../config.js";
+import { steamAPI } from "./scripts/steamAPI.js";
+import { steamid } from "./config.js";
 import {Console} from 'node:console';
 import * as fs from 'node:fs'
 

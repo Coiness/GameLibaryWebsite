@@ -28,7 +28,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 function loadAllData() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const [allGames] = yield Promise.all([fetch('/src/data/allGames.json')
+            const [allGames] = yield Promise.all([fetch('./data/allGames.json') //解析时以html的文件位置为起点
                     .then(res => res.json())
             ]);
             return { allGames };
@@ -210,7 +210,8 @@ function setupNavbarScrollEffect() {
         }
     });
 }
-function handleteamid(mySteamFriendId, div_steamfriendid) {
+//作用域 手动节流锁
+function handlesteamid(mySteamFriendId, div_steamfriendid) {
     const idToCopy = div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.textContent;
     if (!idToCopy) {
         console.log("好友代码区块里一定要有好友代码");
@@ -218,7 +219,7 @@ function handleteamid(mySteamFriendId, div_steamfriendid) {
     }
     navigator.clipboard.writeText(idToCopy).then(() => {
         const originalContent = `${mySteamFriendId}`;
-        div_steamfriendid.textContent = '成功复制';
+        div_steamfriendid.textContent = '复制成功';
         div_steamfriendid.classList.add('copied');
         setTimeout(() => {
             div_steamfriendid.textContent = originalContent;
@@ -226,6 +227,33 @@ function handleteamid(mySteamFriendId, div_steamfriendid) {
         }, 1500);
     });
 }
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+function throttle(func, delay) {
+    let canRun = true;
+    let timeoutId;
+    return function (...args) {
+        if (!canRun) {
+            return;
+        }
+        canRun = false;
+        func.apply(this, args);
+        clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(() => {
+            canRun = true;
+        }, delay);
+    };
+}
+// T extends限制T的类型
+// ThisParameterType<T>提取T的类型
+// Parameter<T> 它的参数列表，和T一样
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -233,6 +261,7 @@ function main() {
             //1.加载数据
             const { allGames } = yield loadAllData();
             const mySteamFriendId = 1085391635;
+            let isCopying = false;
             //2.统一进行DOM节点查询
             const gameListContainer = document.getElementById('game-list-container');
             const sortTotalButton = document.getElementById('sort-by-total');
@@ -253,12 +282,22 @@ function main() {
                     (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
                     clickedButton.classList.add('active');
                 };
-                sortTotalButton === null || sortTotalButton === void 0 ? void 0 : sortTotalButton.addEventListener('click', () => handleSortClick('totalplaytime', sortTotalButton));
-                sortRecentButton === null || sortRecentButton === void 0 ? void 0 : sortRecentButton.addEventListener('click', () => handleSortClick('recentplaytime', sortRecentButton));
+                const throttledSortHandler = throttle(handleSortClick, 500);
+                sortTotalButton === null || sortTotalButton === void 0 ? void 0 : sortTotalButton.addEventListener('click', () => throttledSortHandler("totalplaytime", sortTotalButton));
+                sortRecentButton === null || sortRecentButton === void 0 ? void 0 : sortRecentButton.addEventListener('click', () => throttledSortHandler('recentplaytime', sortRecentButton));
             }
             //6.其他的事件监听
             setupNavbarScrollEffect();
-            div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.addEventListener('click', () => handleteamid(mySteamFriendId, div_steamfriendid));
+            div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.addEventListener('click', () => {
+                if (isCopying)
+                    return;
+                isCopying = true;
+                handlesteamid(mySteamFriendId, div_steamfriendid);
+                //不要在函数里面进行改变状态，改不了的
+                setTimeout(() => {
+                    isCopying = false;
+                }, 1500);
+            });
         }
         catch (error) {
             console.log("main.js出错", error);

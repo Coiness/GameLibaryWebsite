@@ -51,7 +51,7 @@ interface StatsData{
 
 async function loadAllData():Promise<AppData>{
     try{
-        const [allGames] = await Promise.all([fetch('/src/data/allGames.json')
+        const [allGames] = await Promise.all([fetch('./data/allGames.json')//解析时以html的文件位置为起点
             .then(res => res.json())
         ])
 
@@ -262,8 +262,8 @@ function setupNavbarScrollEffect(){
     })
 }
 
-function handlesteamid(mySteamFriendId:number,div_steamfriendid:HTMLElement,isCopying:boolean){
-    if(isCopying) return
+//作用域 手动节流锁
+function handlesteamid(mySteamFriendId:number,div_steamfriendid:HTMLElement){
     const idToCopy = div_steamfriendid?.textContent
     if(!idToCopy){
         console.log("好友代码区块里一定要有好友代码")
@@ -272,14 +272,12 @@ function handlesteamid(mySteamFriendId:number,div_steamfriendid:HTMLElement,isCo
 
     navigator.clipboard.writeText(idToCopy).then(()=>{
         const originalContent = `${mySteamFriendId}`;
-        div_steamfriendid.textContent = '成功复制';
+        div_steamfriendid.textContent = '复制成功';
         div_steamfriendid.classList.add('copied');
-        isCopying = true;
 
         setTimeout(()=>{
             div_steamfriendid.textContent = originalContent;
             div_steamfriendid.classList.remove("copied");
-            isCopying = false;
         },1500)
     })
 }
@@ -296,6 +294,32 @@ function debounce<T extends(...args:any[])=>void>(
         },delay)
     }
 }
+
+
+function throttle<T extends(...args:any[])=>void>(
+    func:T,
+    delay:number
+):(this:ThisParameterType<T>,...args:Parameters<T>)=>void{
+    let canRun = true;
+    let timeoutId:number|undefined
+    return function(this:ThisParameterType<T> ,...args:Parameters<T>){
+        if(!canRun){
+            return;
+        }
+        canRun = false
+        func.apply(this,args);
+        clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(()=>{
+            canRun = true;
+        },delay)
+    }
+}
+
+// T extends限制T的类型
+// ThisParameterType<T>提取T的类型
+// Parameter<T> 它的参数列表，和T一样
+
+
 
 async function main(){
     try{
@@ -331,14 +355,24 @@ async function main(){
                 clickedButton.classList.add('active')
             }
 
-            sortTotalButton?.addEventListener('click',() => handleSortClick('totalplaytime',sortTotalButton))
-            sortRecentButton?.addEventListener('click',() => handleSortClick('recentplaytime',sortRecentButton))
+            const throttledSortHandler = throttle(handleSortClick,500)
+
+            sortTotalButton?.addEventListener('click',() => throttledSortHandler("totalplaytime",sortTotalButton))
+            sortRecentButton?.addEventListener('click',() => throttledSortHandler('recentplaytime',sortRecentButton))
             
         }
 
         //6.其他的事件监听
         setupNavbarScrollEffect();
-        div_steamfriendid?.addEventListener('click',()=>handlesteamid(mySteamFriendId,div_steamfriendid,isCopying))
+        div_steamfriendid?.addEventListener('click',()=>{
+            if(isCopying) return;
+            isCopying=true;
+            handlesteamid(mySteamFriendId,div_steamfriendid)
+            //不要在函数里面进行改变状态，改不了的
+            setTimeout(()=>{
+                isCopying=false;
+            },1500)
+        })
     }catch(error){
         console.log("main.js出错",error)
     }

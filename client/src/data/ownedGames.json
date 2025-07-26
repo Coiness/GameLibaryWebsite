@@ -222,15 +222,15 @@
       {
         "appid": 250900,
         "name": "The Binding of Isaac: Rebirth",
-        "playtime_2weeks": 2169,
-        "playtime_forever": 16872,
+        "playtime_2weeks": 146,
+        "playtime_forever": 17018,
         "img_icon_url": "16d46c8630499bfc54d20745ac90786a302cd643",
         "has_community_visible_stats": true,
-        "playtime_windows_forever": 16723,
+        "playtime_windows_forever": 16870,
         "playtime_mac_forever": 0,
         "playtime_linux_forever": 148,
         "playtime_deck_forever": 0,
-        "rtime_last_played": 1752129437,
+        "rtime_last_played": 1753194149,
         "has_leaderboards": true,
         "content_descriptorids": [
           5
@@ -445,14 +445,15 @@
       {
         "appid": 475550,
         "name": "Beholder",
-        "playtime_forever": 0,
+        "playtime_2weeks": 218,
+        "playtime_forever": 218,
         "img_icon_url": "1025e7d1606b1e7a7f17048532039d78241e9f5d",
         "has_community_visible_stats": true,
-        "playtime_windows_forever": 0,
+        "playtime_windows_forever": 218,
         "playtime_mac_forever": 0,
         "playtime_linux_forever": 0,
         "playtime_deck_forever": 0,
-        "rtime_last_played": 0,
+        "rtime_last_played": 1752491070,
         "content_descriptorids": [
           2,
           5
@@ -744,7 +745,7 @@
       {
         "appid": 881100,
         "name": "Noita",
-        "playtime_2weeks": 34,
+        "playtime_2weeks": 12,
         "playtime_forever": 34,
         "img_icon_url": "a21dbd1d3bd01f0a688f2d7029978d5cdbe14e74",
         "has_community_visible_stats": true,
@@ -867,7 +868,6 @@
       {
         "appid": 993090,
         "name": "Lossless Scaling",
-        "playtime_2weeks": 718,
         "playtime_forever": 2535,
         "img_icon_url": "42900f430ed7828d2dfa25f07ac02e3de96bc520",
         "playtime_windows_forever": 2535,
@@ -1000,14 +1000,15 @@
       {
         "appid": 1189490,
         "name": "觅长生",
-        "playtime_forever": 1100,
+        "playtime_2weeks": 3616,
+        "playtime_forever": 4716,
         "img_icon_url": "f242f2631b18b9644781ba1df9af65ae18e59bf9",
         "has_community_visible_stats": true,
-        "playtime_windows_forever": 1100,
+        "playtime_windows_forever": 4716,
         "playtime_mac_forever": 0,
-        "playtime_linux_forever": 0,
+        "playtime_linux_forever": 1,
         "playtime_deck_forever": 0,
-        "rtime_last_played": 1724061329,
+        "rtime_last_played": 1753453780,
         "playtime_disconnected": 0
       },
       {
@@ -1594,13 +1595,14 @@
       {
         "appid": 2429860,
         "name": "Living With Sister: Monochrome Fantasy",
-        "playtime_forever": 0,
+        "playtime_2weeks": 386,
+        "playtime_forever": 386,
         "img_icon_url": "aa642ef1d0e6f232bc39a8ebe36f1cc1849469df",
-        "playtime_windows_forever": 0,
+        "playtime_windows_forever": 386,
         "playtime_mac_forever": 0,
         "playtime_linux_forever": 0,
         "playtime_deck_forever": 0,
-        "rtime_last_played": 0,
+        "rtime_last_played": 1752845292,
         "playtime_disconnected": 0
       },
       {
@@ -1636,15 +1638,15 @@
       {
         "appid": 1267910,
         "name": "Melvor Idle",
-        "playtime_2weeks": 1869,
-        "playtime_forever": 68151,
+        "playtime_2weeks": 3261,
+        "playtime_forever": 70710,
         "img_icon_url": "88eca64c662c128de095b4e452881398ac71969c",
         "has_community_visible_stats": true,
-        "playtime_windows_forever": 14215,
+        "playtime_windows_forever": 15212,
         "playtime_mac_forever": 0,
-        "playtime_linux_forever": 53935,
+        "playtime_linux_forever": 55498,
         "playtime_deck_forever": 0,
-        "rtime_last_played": 1752336296,
+        "rtime_last_played": 1753450867,
         "playtime_disconnected": 28
       },
       {

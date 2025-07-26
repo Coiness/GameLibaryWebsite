@@ -193,7 +193,7 @@ header.scrolled{
     gap: var(--space-sm);
 }
 
-.button{
+.sort-button{
     padding: var(--space-sm) var(--space-md);
     border:  1px solid var(--color-dark-1);
     background-color: transparent;
@@ -205,7 +205,7 @@ header.scrolled{
     transition:  all 0.2s ease;
 }
 
-.button:hover{
+.sort-button:hover{
     background-color: var(--color-dark-1);
     border-color: var(--color-primary);
 }

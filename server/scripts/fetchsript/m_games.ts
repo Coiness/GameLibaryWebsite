@@ -12,7 +12,7 @@ interface SteamApiResponse<T> {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataDir = path.join(__dirname, '..', '..','..','client','src', 'data');
+const dataDir = path.join(__dirname,'..', '..', '..','..','client','src', 'data');
 
 const ownedGamesPath = path.join(dataDir, 'ownedGames.json');
 const recentGamesPath = path.join(dataDir, 'recentGames.json');

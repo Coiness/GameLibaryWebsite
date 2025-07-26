@@ -1,14 +1,14 @@
-import { steamAPI } from "../steamAPI.ts"
+import { steamAPI } from "../steamAPI.js"
 import {writeFile} from "node:fs/promises"
-import { isDeepType,Shape } from "../../utils/typeGuards.ts"
-import { steamid } from "../../../config.js"
+import { isDeepType,Shape } from "../../utils/typeGuards.js"
+import { steamid } from "../../config.js"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const targetFilePath = path.join(__dirname,'..','..','..','client','src', 'data','steamLevel.json');
+const targetFilePath = path.join(__dirname,'..','..','..','..','client','src', 'data','steamLevel.json');
 
 const shape_steamlevel_response:Shape={
     response:{

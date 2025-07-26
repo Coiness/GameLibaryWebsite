@@ -1,8 +1,8 @@
-import * as pojo from "../../pojo/friendlist.ts"
-import { steamAPI } from "../steamAPI.ts"
+import * as pojo from "../../pojo/friendlist.js"
+import { steamAPI } from "../steamAPI.js"
 import {writeFile,mkdir} from "node:fs/promises"
-import { isDeepType,Shape } from "../../utils/typeGuards.ts"
-import { steamid } from "../../../config.js"
+import { isDeepType,Shape } from "../../utils/typeGuards.js"
+import { steamid } from "../../config.js"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);   //文件名
 const __dirname = path.dirname(__filename);          //目录名
 //双下划线开头，表明这是一个由运行环境提供的、具有特殊含义的“魔法”或“内部”变量
 
-const targetFilePath = path.join(__dirname,'..','..','..','client','src', 'data', 'friendList.json');
+const targetFilePath = path.join(__dirname,'..','..','..','..','client','src', 'data', 'friendList.json');
 
 const shape_friendlists_response:Shape={
     friendslist:{

@@ -1,4 +1,5 @@
-import { steamapi_key } from "../../config.js"; // 修正了导入路径并移除了未使用的 steamid
+import { steamapi_key } from "../config.js";
+
 
 type ParamValue = string | number | boolean | string[] | number[];
 

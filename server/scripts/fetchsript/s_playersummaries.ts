@@ -1,16 +1,15 @@
-import { steamAPI } from "../steamAPI.ts"
+import { steamAPI } from "../steamAPI.js"
 import {writeFile, readFile} from "node:fs/promises"
-import { isDeepType,Shape } from "../../utils/typeGuards.ts"
-import { steamid } from "../../../config.js"
+import { isDeepType,Shape } from "../../utils/typeGuards.js"
+import { steamid } from "../../config.js"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { GetFriendListResponse } from "../../pojo/friendlist.ts"
+import { GetFriendListResponse } from "../../pojo/friendlist.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const friendListPath = path.join(__dirname, '..', '..', '..','client','data', 'friendList.json');
-const targetFilePath = path.join(__dirname,'..','..','..','client','data','playerSummaries.json');
+const targetFilePath = path.join(__dirname,'..','..','..','..','client','src','data','playerSummaries.json');
 
 const shape_playersummaries_response:Shape={
     response:{
