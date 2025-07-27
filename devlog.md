@@ -148,13 +148,21 @@ JS:
 那么解决方法就很简单了，一是把状态锁外置，函数只负责执行，二是传入状态对象，像`{a}`这样，那么我传入的不是状态变量`a`，而是包含状态变量`a`的对象。
 现在打算学习CI/CD流水线，有一说一，这个项目还有想要优化的，但是我想去写前几天的那个配方工坊项目了，那个很有趣，也很具有挑战性，同时也很实用，我不想让AI直接生成一大段一大段把那个项目敷衍过去了。
 
-CI/CD中，怎么检查代码的？检查什么了？
+CI/CD中，怎么检查代码的？检查什么了？ 
+—— 主要是三个方面 1.代码风格和格式 2.单元测试 3.类型检查
 uses和run有什么区别？
-CI/CD上传时不会触发？
-为什么要准备部署的产物
-如何将build任务的成果交给deploy任务
+ —— use使用封装好的action脚本，run自己输入命令行（使用|输入多行）
+CI/CD上传时会不会触发？ 
+—— 会
+为什么要准备部署的产物？ 
+—— 两个job可以想象为在两台隔离的虚拟机上运行的
+如何将build任务的成果交给deploy任务 
+—— 使用`uses: actions/upload-pages-artifact@v3`,配合`with`传入地址可以将文件上传到临时存储空间。被上传的包称为Artifact
 environment和url是什么？
+—— environment是用于管理和保护部署环境的功能，`name`可以声明任务将要部署到一个怎么样的环境。（现在的设置是一个特殊名称）
+`url: ${{steps.deployment.outputs.page_url}}`则是一个特殊的输出变量，会产生一个output，作用是把地址显示再工作流的摘要页面上，方便点击访问
 网上看到branch和folder是什么，为什么没见到？
+—— 过时的部署方法，不推荐。现在的流程`upload-pages-artifact` + `deploy-pages`更干净更简单
 
 关于git的操作
 git remote -v 
@@ -162,5 +170,9 @@ git remote add origin_name url
 git remoye set-url origin_name new_url
 git branch -m new_branch_name
 git pull origi_name branch_name
+
+明日任务：手机端适配
+
+
 
 

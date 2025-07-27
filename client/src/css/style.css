@@ -291,3 +291,62 @@ button.active{
     background-color: #a3cf05;
 }
 
+@media(max-width: 1280px){
+    .game-item{
+        display: block;
+        align-items: center;
+        text-align: center;
+        padding: var(--space-md) 0;
+    }
+    
+    
+    .game-item__icon{
+        width: auto;
+        height: auto;
+    }
+
+    .game-item__info{
+        width: auto;
+    }
+
+    .game-item__name{
+        font-size: 1.5rem;
+    }
+
+
+
+}
+
+@media(max-width:600px){
+    .game-item__icon{
+        width: 400px
+    }
+
+    .list-toolbar{
+        display: block;
+    }
+
+    .sort-button{
+        margin: 16px 0;
+    }
+    
+}
+
+@media(max-width:500px){
+    header{
+        display: block;
+    }
+
+    .user-card{
+        justify-content: left;
+    }
+
+    
+
+    .game-item__icon{
+        width: 300px;
+    }
+
+
+}
+

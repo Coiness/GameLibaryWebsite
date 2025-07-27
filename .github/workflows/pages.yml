@@ -19,7 +19,7 @@ jobs:
                 pwd
                 ls -l
 
-            - name: 检查输出的代码（复制到环境中）
+            - name: 搬运工这一块
               uses: actions/checkout@v4 
 
             - name: 检查，上一步是不是真给我复制好了
