@@ -5,10 +5,10 @@
       {
         "appid": 1189490,
         "name": "觅长生",
-        "playtime_2weeks": 3616,
-        "playtime_forever": 4716,
+        "playtime_2weeks": 3679,
+        "playtime_forever": 4779,
         "img_icon_url": "f242f2631b18b9644781ba1df9af65ae18e59bf9",
-        "playtime_windows_forever": 4716,
+        "playtime_windows_forever": 4779,
         "playtime_mac_forever": 0,
         "playtime_linux_forever": 1,
         "playtime_deck_forever": 0
@@ -16,12 +16,12 @@
       {
         "appid": 1267910,
         "name": "Melvor Idle",
-        "playtime_2weeks": 3261,
-        "playtime_forever": 70710,
+        "playtime_2weeks": 1671,
+        "playtime_forever": 70938,
         "img_icon_url": "88eca64c662c128de095b4e452881398ac71969c",
         "playtime_windows_forever": 15212,
         "playtime_mac_forever": 0,
-        "playtime_linux_forever": 55498,
+        "playtime_linux_forever": 55726,
         "playtime_deck_forever": 0
       },
       {
@@ -38,7 +38,7 @@
       {
         "appid": 475550,
         "name": "Beholder",
-        "playtime_2weeks": 218,
+        "playtime_2weeks": 128,
         "playtime_forever": 218,
         "img_icon_url": "1025e7d1606b1e7a7f17048532039d78241e9f5d",
         "playtime_windows_forever": 218,
@@ -47,25 +47,25 @@
         "playtime_deck_forever": 0
       },
       {
+        "appid": 1735700,
+        "name": "Back to the Dawn",
+        "playtime_2weeks": 57,
+        "playtime_forever": 57,
+        "img_icon_url": "0eccba8ce557c675f0a9097c786d0b9f4680ff3e",
+        "playtime_windows_forever": 57,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0,
+        "playtime_deck_forever": 0
+      },
+      {
         "appid": 250900,
         "name": "The Binding of Isaac: Rebirth",
-        "playtime_2weeks": 146,
+        "playtime_2weeks": 20,
         "playtime_forever": 17018,
         "img_icon_url": "16d46c8630499bfc54d20745ac90786a302cd643",
         "playtime_windows_forever": 16870,
         "playtime_mac_forever": 0,
         "playtime_linux_forever": 148,
-        "playtime_deck_forever": 0
-      },
-      {
-        "appid": 881100,
-        "name": "Noita",
-        "playtime_2weeks": 12,
-        "playtime_forever": 34,
-        "img_icon_url": "a21dbd1d3bd01f0a688f2d7029978d5cdbe14e74",
-        "playtime_windows_forever": 0,
-        "playtime_mac_forever": 0,
-        "playtime_linux_forever": 34,
         "playtime_deck_forever": 0
       }
     ]

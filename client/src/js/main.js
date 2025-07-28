@@ -15,29 +15,18 @@
  * 3.实现好友代码点击复制功能
  * 4.实现数据查询与排序功能
  */
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 //模块化函数
-function loadAllData() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const [allGames] = yield Promise.all([fetch('./data/allGames.json') //解析时以html的文件位置为起点
-                    .then(res => res.json())
-            ]);
-            return { allGames };
-        }
-        catch (error) {
-            console.log("数据加载出错", error);
-            throw new Error("加载数据出错");
-        }
-    });
+async function loadAllData() {
+    try {
+        const [allGames, timeStamp] = await Promise.all([fetch('./data/allGames.json').then(res => res.json()),
+            fetch('./data/timeStamp.json').then(res => res.json())
+        ]);
+        return { allGames, timeStamp };
+    }
+    catch (error) {
+        console.log("数据加载出错", error);
+        throw new Error("加载数据出错");
+    }
 }
 //从游戏数据中计算统计信息
 function calculateStats(games) {
@@ -60,14 +49,13 @@ function calculateStats(games) {
     // 
     //     使用reduce实现
     return games.reduce((stats, game) => {
-        var _a, _b;
         // 'stats' 就是上一次循环返回的累加器对象
         // 'game' 是当前正在处理的游戏,games的遍历对象
         stats.gamesNumber++;
         stats.totalPlaytimeMins += game.playtime_forever;
-        stats.recentPlaytimeMins += (_a = game.playtime_2weeks) !== null && _a !== void 0 ? _a : 0;
+        stats.recentPlaytimeMins += game.playtime_2weeks ?? 0;
         stats.maxPlaytimeForever = Math.max(stats.maxPlaytimeForever, game.playtime_forever);
-        stats.maxPlaytimeRecent = Math.max(stats.maxPlaytimeRecent, (_b = game.playtime_2weeks) !== null && _b !== void 0 ? _b : 0);
+        stats.maxPlaytimeRecent = Math.max(stats.maxPlaytimeRecent, game.playtime_2weeks ?? 0);
         return stats;
     }, {
         // reduce中第一个参数stats的初始值
@@ -76,6 +64,7 @@ function calculateStats(games) {
         recentPlaytimeMins: 0,
         maxPlaytimeForever: 0,
         maxPlaytimeRecent: 0,
+        updatedTime: ""
     });
 }
 function displayStats(stats) {
@@ -83,12 +72,15 @@ function displayStats(stats) {
         const span_games_number = document.getElementById("games_number");
         const span_total_playtime = document.getElementById("total_playtime");
         const span_recent_playtime = document.getElementById("recent_playtime");
+        const span_updatedTime = document.getElementById("updated_time");
         if (span_games_number)
             span_games_number.textContent = `${stats.gamesNumber}`;
         if (span_total_playtime)
             span_total_playtime.textContent = `${(stats.totalPlaytimeMins / 60).toFixed(1)}`;
         if (span_recent_playtime)
             span_recent_playtime.textContent = `${(stats.recentPlaytimeMins / 60).toFixed(1)}`;
+        if (span_updatedTime)
+            span_updatedTime.textContent = `${stats.updatedTime.split('T')[0]}`;
     }
     catch (error) {
         console.log("增加统计数据时出错", error);
@@ -212,7 +204,7 @@ function setupNavbarScrollEffect() {
 }
 //作用域 手动节流锁
 function handlesteamid(mySteamFriendId, div_steamfriendid) {
-    const idToCopy = div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.textContent;
+    const idToCopy = div_steamfriendid?.textContent;
     if (!idToCopy) {
         console.log("好友代码区块里一定要有好友代码");
         return;
@@ -254,55 +246,53 @@ function throttle(func, delay) {
 // T extends限制T的类型
 // ThisParameterType<T>提取T的类型
 // Parameter<T> 它的参数列表，和T一样
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            console.log("程序开始执行");
-            //1.加载数据
-            const { allGames } = yield loadAllData();
-            const mySteamFriendId = 1085391635;
-            let isCopying = false;
-            //2.统一进行DOM节点查询
-            const gameListContainer = document.getElementById('game-list-container');
-            const sortTotalButton = document.getElementById('sort-by-total');
-            const sortRecentButton = document.getElementById('sort-by-recent');
-            const div_steamfriendid = document.getElementById('steamfriendid');
-            //3.统计数据
-            const stats = calculateStats(allGames);
-            displayStats(stats);
-            //4.渲染游戏库图片
-            populateGameIcons(allGames);
-            //5.渲染游戏列表并设置监听
-            if (gameListContainer) {
-                createGameItemList(stats, allGames, gameListContainer);
-                sortGameList(gameListContainer, 'totalplaytime');
-                const handleSortClick = (sortBy, clickedButton) => {
-                    var _a;
-                    sortGameList(gameListContainer, sortBy);
-                    (_a = document.querySelector('.sort-button.active')) === null || _a === void 0 ? void 0 : _a.classList.remove('active');
-                    clickedButton.classList.add('active');
-                };
-                const throttledSortHandler = throttle(handleSortClick, 500);
-                sortTotalButton === null || sortTotalButton === void 0 ? void 0 : sortTotalButton.addEventListener('click', () => throttledSortHandler("totalplaytime", sortTotalButton));
-                sortRecentButton === null || sortRecentButton === void 0 ? void 0 : sortRecentButton.addEventListener('click', () => throttledSortHandler('recentplaytime', sortRecentButton));
-            }
-            //6.其他的事件监听
-            setupNavbarScrollEffect();
-            div_steamfriendid === null || div_steamfriendid === void 0 ? void 0 : div_steamfriendid.addEventListener('click', () => {
-                if (isCopying)
-                    return;
-                isCopying = true;
-                handlesteamid(mySteamFriendId, div_steamfriendid);
-                //不要在函数里面进行改变状态，改不了的
-                setTimeout(() => {
-                    isCopying = false;
-                }, 1500);
-            });
+async function main() {
+    try {
+        console.log("程序开始执行");
+        //1.加载数据
+        const { allGames, timeStamp } = await loadAllData();
+        const mySteamFriendId = 1085391635;
+        let isCopying = false;
+        //2.统一进行DOM节点查询
+        const gameListContainer = document.getElementById('game-list-container');
+        const sortTotalButton = document.getElementById('sort-by-total');
+        const sortRecentButton = document.getElementById('sort-by-recent');
+        const div_steamfriendid = document.getElementById('steamfriendid');
+        //3.统计数据
+        const stats = calculateStats(allGames);
+        stats.updatedTime = timeStamp;
+        displayStats(stats);
+        //4.渲染游戏库图片
+        populateGameIcons(allGames);
+        //5.渲染游戏列表并设置监听
+        if (gameListContainer) {
+            createGameItemList(stats, allGames, gameListContainer);
+            sortGameList(gameListContainer, 'totalplaytime');
+            const handleSortClick = (sortBy, clickedButton) => {
+                sortGameList(gameListContainer, sortBy);
+                document.querySelector('.sort-button.active')?.classList.remove('active');
+                clickedButton.classList.add('active');
+            };
+            const throttledSortHandler = throttle(handleSortClick, 500);
+            sortTotalButton?.addEventListener('click', () => throttledSortHandler("totalplaytime", sortTotalButton));
+            sortRecentButton?.addEventListener('click', () => throttledSortHandler('recentplaytime', sortRecentButton));
         }
-        catch (error) {
-            console.log("main.js出错", error);
-        }
-    });
+        //6.其他的事件监听
+        setupNavbarScrollEffect();
+        div_steamfriendid?.addEventListener('click', () => {
+            if (isCopying)
+                return;
+            isCopying = true;
+            handlesteamid(mySteamFriendId, div_steamfriendid);
+            //不要在函数里面进行改变状态，改不了的
+            setTimeout(() => {
+                isCopying = false;
+            }, 1500);
+        });
+    }
+    catch (error) {
+        console.log("main.js出错", error);
+    }
 }
 main();
 export {};

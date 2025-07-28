@@ -37,6 +37,7 @@ interface GameInfo{
 
 interface AppData{
     allGames:GameInfo[];
+    timeStamp:string;
 }
 
 interface StatsData{
@@ -45,17 +46,20 @@ interface StatsData{
     recentPlaytimeMins:number;
     maxPlaytimeForever:number;
     maxPlaytimeRecent:number;
+    updatedTime:string;
 }
 
 //模块化函数
 
 async function loadAllData():Promise<AppData>{
     try{
-        const [allGames] = await Promise.all([fetch('./data/allGames.json')//解析时以html的文件位置为起点
-            .then(res => res.json())
+        const [allGames,timeStamp] = await Promise.all
+        ([fetch('./data/allGames.json').then(res => res.json())
+        ,fetch('./data/timeStamp.json').then(res => res.json())
         ])
 
-        return{allGames};
+
+        return{allGames,timeStamp};
     }catch (error){
         console.log("数据加载出错",error)
         throw new Error("加载数据出错")
@@ -99,6 +103,7 @@ function calculateStats(games:GameInfo[]):StatsData{
         recentPlaytimeMins:0,
         maxPlaytimeForever:0,
         maxPlaytimeRecent:0,
+        updatedTime:""
     }
     )
 
@@ -109,10 +114,12 @@ function displayStats(stats:StatsData){
         const span_games_number = document.getElementById("games_number")
         const span_total_playtime = document.getElementById("total_playtime")
         const span_recent_playtime = document.getElementById("recent_playtime")
+        const span_updatedTime = document.getElementById("updated_time")
 
         if(span_games_number) span_games_number.textContent = `${stats.gamesNumber}`
         if(span_total_playtime) span_total_playtime.textContent = `${(stats.totalPlaytimeMins /60).toFixed(1)}`
         if(span_recent_playtime) span_recent_playtime.textContent = `${(stats.recentPlaytimeMins / 60).toFixed(1)}`
+        if(span_updatedTime) span_updatedTime.textContent = `${stats.updatedTime.split('T')[0]}`
     }catch(error){
         console.log("增加统计数据时出错",error)
     }
@@ -251,7 +258,6 @@ function sortGameList(container:HTMLElement,sortBy:'totalplaytime'|'recentplayti
 function setupNavbarScrollEffect(){
     const header = document.querySelector('header');
     if(!header) return; 
-    console.log("1")
 
     window.addEventListener('scroll',()=>{
         if(window.scrollY > 150){
@@ -325,7 +331,7 @@ async function main(){
     try{
         console.log("程序开始执行")
         //1.加载数据
-        const{allGames} = await loadAllData();
+        const{allGames,timeStamp} = await loadAllData();
         const mySteamFriendId= 1085391635
         let isCopying = false;
 
@@ -337,6 +343,7 @@ async function main(){
 
         //3.统计数据
         const stats = calculateStats(allGames)
+        stats.updatedTime = timeStamp
         displayStats(stats)
 
         //4.渲染游戏库图片
